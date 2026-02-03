@@ -1,13 +1,47 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Text Generator - 멋진 텍스트 생성기</title>
-    <meta name="description" content="일반 텍스트를 멋진 유니코드 스타일로 변환하세요. Bold, Italic, Cursive, Gothic, Bubble 등 다양한 스타일 지원!">
+    <title>Fancy Text Generator - 멋진 텍스트 생성기 | Cool Fonts for Instagram, Discord, Gaming</title>
+    <meta name="description" content="무료 Fancy Text Generator! 100+ 스타일로 텍스트를 변환하세요. Instagram, Discord, PUBG, Free Fire, TikTok에서 사용 가능한 멋진 유니코드 폰트. Copy and paste stylish fonts instantly!">
+    <meta name="keywords" content="fancy text generator, 멋진 텍스트, cool fonts, stylish text, instagram fonts, discord fonts, pubg name, free fire name, unicode fonts, 유니코드 폰트">
+    <meta name="author" content="Fancy Text Generator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://fancytextgenerator.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Fancy Text Generator - 100+ Cool & Stylish Fonts">
+    <meta property="og:description" content="Transform your text into fancy Unicode fonts. Perfect for Instagram, Discord, TikTok, and gaming usernames!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fancytextgenerator.com/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fancy Text Generator - Cool & Stylish Fonts">
+    <meta name="twitter:description" content="100+ fancy text styles for social media and gaming. Copy and paste instantly!">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Fancy Text Generator",
+        "description": "Free online fancy text generator with 100+ Unicode font styles",
+        "url": "https://fancytextgenerator.com/",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0"
+        }
+    }
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -18,14 +52,18 @@
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
             --secondary: #ec4899;
+            --accent: #f59e0b;
             --bg: #0f172a;
             --bg-card: #1e293b;
             --bg-input: #334155;
+            --bg-hover: #3b4a63;
             --text: #f1f5f9;
             --text-muted: #94a3b8;
             --border: #475569;
             --success: #22c55e;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
         }
 
         body {
@@ -37,55 +75,101 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 2rem 1rem;
         }
 
+        /* Header */
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
         }
 
-        h1 {
-            font-size: 2.5rem;
+        .logo {
+            font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 0.5rem;
+            display: inline-block;
         }
 
         .subtitle {
             color: var(--text-muted);
             font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
+        .badge-row {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.35rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .badge.highlight {
+            background: var(--gradient);
+            border: none;
+            color: white;
+        }
+
+        /* Input Section */
         .input-section {
             background: var(--bg-card);
             border-radius: 1rem;
             padding: 1.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             border: 1px solid var(--border);
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .input-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .input-label {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 0.75rem;
+            font-weight: 600;
             color: var(--text);
+            font-size: 1rem;
+        }
+
+        .char-count {
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         textarea {
             width: 100%;
-            min-height: 120px;
+            min-height: 100px;
             padding: 1rem;
             border: 2px solid var(--border);
             border-radius: 0.75rem;
             background: var(--bg-input);
             color: var(--text);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-family: inherit;
             resize: vertical;
             transition: border-color 0.2s;
@@ -100,9 +184,184 @@
             color: var(--text-muted);
         }
 
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: var(--bg-input);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .action-btn:hover {
+            background: var(--bg-hover);
+            border-color: var(--primary);
+        }
+
+        .action-btn.primary {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .action-btn.primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Category Tabs */
+        .category-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            scrollbar-width: thin;
+        }
+
+        .category-tab {
+            background: var(--bg-card);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .category-tab:hover {
+            color: var(--text);
+            border-color: var(--primary);
+        }
+
+        .category-tab.active {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Search & Filter */
+        .filter-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            background: var(--bg-card);
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+        }
+
+        /* Decorators Section */
+        .decorator-section {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .decorator-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .decorator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .decorator-item {
+            background: var(--bg-input);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .decorator-item:hover {
+            border-color: var(--primary);
+            background: var(--bg-hover);
+        }
+
+        .decorator-preview {
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .decorator-copy {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.35rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .decorator-item:hover .decorator-copy {
+            opacity: 1;
+        }
+
+        /* Styles Grid */
         .styles-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 1rem;
         }
 
@@ -118,6 +377,20 @@
         .style-card:hover {
             border-color: var(--primary);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+        }
+
+        .style-card.popular::before {
+            content: 'Popular';
+            position: absolute;
+            top: -8px;
+            right: 12px;
+            background: var(--accent);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
         }
 
         .style-header {
@@ -131,6 +404,15 @@
             font-weight: 600;
             color: var(--text);
             font-size: 0.95rem;
+        }
+
+        .style-category {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg-input);
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+            margin-left: 0.5rem;
         }
 
         .copy-btn {
@@ -165,13 +447,19 @@
             background: var(--bg-input);
             padding: 1rem;
             border-radius: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             word-break: break-word;
             min-height: 60px;
             display: flex;
             align-items: center;
             color: var(--text);
             line-height: 1.5;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .style-preview:hover {
+            background: var(--bg-hover);
         }
 
         .style-preview.empty {
@@ -179,10 +467,166 @@
             font-style: italic;
         }
 
+        /* SEO Content Sections */
+        .seo-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--text);
+        }
+
+        .content-text {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* How to Use */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Platform Cards */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .platform-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .platform-card:hover {
+            border-color: var(--primary);
+        }
+
+        .platform-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .platform-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .platform-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-input);
+        }
+
+        .faq-question svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-question svg {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.25rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            color: var(--text-muted);
+        }
+
+        .faq-item.open .faq-answer {
+            padding: 0 1.25rem 1.25rem;
+            max-height: 500px;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
+            margin-top: 4rem;
+            padding: 2rem 0;
             border-top: 1px solid var(--border);
             color: var(--text-muted);
         }
@@ -196,6 +640,7 @@
             text-decoration: underline;
         }
 
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 2rem;
@@ -209,6 +654,9 @@
             opacity: 0;
             transition: all 0.3s;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .toast.show {
@@ -216,23 +664,10 @@
             opacity: 1;
         }
 
-        @media (max-width: 640px) {
-            h1 {
-                font-size: 1.75rem;
-            }
-
-            .styles-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                padding: 1rem;
-            }
-        }
-
-        /* 스크롤바 스타일 */
+        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
+            height: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -247,76 +682,314 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--text-muted);
         }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+
+            .styles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .input-section {
+                position: relative;
+                top: 0;
+            }
+
+            .decorator-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                justify-content: center;
+            }
+        }
+
+        /* Animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Hidden for SEO */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>✨ Fancy Text Generator</h1>
-            <p class="subtitle">일반 텍스트를 멋진 유니코드 스타일로 변환하세요!</p>
+            <h1 class="logo" data-key="logo">Fancy Text Generator</h1>
+            <p class="subtitle" data-key="subtitle">Transform your text into 100+ stylish Unicode fonts. Perfect for Instagram, Discord, TikTok, and gaming!</p>
+            <div class="badge-row">
+                <span class="badge highlight" data-key="badge-styles">100+ Styles</span>
+                <span class="badge" data-key="badge-free">Free Forever</span>
+                <span class="badge" data-key="badge-no-signup">No Sign-up</span>
+                <span class="badge" data-key="badge-instant-copy">Instant Copy</span>
+            </div>
+            <div id="language-selector" style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+                <button onclick="setLanguage('en')" class="action-btn">English</button>
+                <button onclick="setLanguage('ko')" class="action-btn">한국어</button>
+                <button onclick="setLanguage('zh')" class="action-btn">中文</button>
+                <button onclick="setLanguage('es')" class="action-btn">Español</button>
+            </div>
         </header>
 
-        <section class="input-section">
-            <label class="input-label" for="inputText">텍스트를 입력하세요</label>
+        <!-- Input Section -->
+        <section class="input-section" aria-label="Text Input">
+            <div class="input-header">
+                <label class="input-label" for="inputText" data-key="input-label">Enter your text</label>
+                <span class="char-count" id="charCount">0 characters</span>
+            </div>
             <textarea
                 id="inputText"
-                placeholder="여기에 텍스트를 입력하면 아래에서 다양한 스타일로 변환됩니다..."
+                placeholder="Type here to generate fancy text..."
+                data-key-placeholder="input-placeholder"
+                aria-describedby="charCount"
             >Hello World</textarea>
+            <div class="quick-actions">
+                <button class="action-btn" onclick="clearText()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                    <span data-key="btn-clear">Clear</span>
+                </button>
+                <button class="action-btn" onclick="copyAllStyles()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+                    <span data-key="btn-copy-all">Copy All Styles</span>
+                </button>
+                <button class="action-btn primary" onclick="scrollToStyles()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    <span data-key="btn-view-styles">View Styles</span>
+                </button>
+            </div>
         </section>
 
-        <section class="styles-grid" id="stylesGrid">
-            <!-- 스타일 카드들이 JavaScript로 생성됩니다 -->
+        <!-- Decorators Section -->
+        <section class="decorator-section" aria-label="Text Decorators">
+            <h2 class="decorator-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                <span data-key="decorators-title">Text Decorators</span>
+            </h2>
+            <div class="decorator-grid" id="decoratorGrid">
+                <!-- Decorators will be generated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Category Tabs -->
+        <section class="category-section" aria-label="Style Categories">
+            <div class="filter-row">
+                <div class="search-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    <input type="text" id="searchInput" placeholder="Search styles..." data-key-placeholder="search-placeholder">
+                </div>
+            </div>
+            <div class="category-tabs" role="tablist">
+                <button class="category-tab active" data-category="all" role="tab" data-key="cat-all">All</button>
+                <button class="category-tab" data-category="popular" role="tab" data-key="cat-popular">Popular</button>
+                <button class="category-tab" data-category="bold" role="tab" data-key="cat-bold">Bold & Italic</button>
+                <button class="category-tab" data-category="fancy" role="tab" data-key="cat-fancy">Fancy Scripts</button>
+                <button class="category-tab" data-category="symbols" role="tab" data-key="cat-symbols">Symbols & Shapes</button>
+                <button class="category-tab" data-category="effects" role="tab" data-key="cat-effects">Effects</button>
+                <button class="category-tab" data-category="gaming" role="tab" data-key="cat-gaming">Gaming</button>
+            </div>
+        </section>
+
+        <!-- Styles Grid -->
+        <section class="styles-grid" id="stylesGrid" aria-label="Font Styles">
+            <!-- Style cards will be generated by JavaScript -->
+        </section>
+
+        <!-- SEO Content: How to Use -->
+        <section class="seo-section" aria-labelledby="how-to-use">
+            <h2 class="section-title" id="how-to-use" data-key="how-to-use-title">How to Use Fancy Text Generator</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title" data-key="step1-title">Type Your Text</h3>
+                    <p class="step-desc" data-key="step1-desc">Enter any text in the input box above. Your text will be instantly converted.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title" data-key="step2-title">Choose Your Style</h3>
+                    <p class="step-desc" data-key="step2-desc">Browse 100+ fancy font styles. Use filters to find the perfect one.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title" data-key="step3-title">Copy & Paste</h3>
+                    <p class="step-desc" data-key="step3-desc">Click the copy button or the text itself. Paste anywhere you want!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Platform Usage -->
+        <section class="seo-section" aria-labelledby="platform-usage">
+            <h2 class="section-title" id="platform-usage" data-key="where-to-use-title">Where to Use</h2>
+            <p class="content-text" data-key="where-to-use-desc">Our fancy text generator works on almost any platform that supports Unicode. Copy your stylish text and paste it directly!</p>
+            <div class="platform-grid">
+                <div class="platform-card">
+                    <div class="platform-icon">📸</div>
+                    <h3 class="platform-name" data-key="platform-instagram">Instagram</h3>
+                    <p class="platform-desc" data-key="platform-instagram-desc">Bio, captions, comments</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">💬</div>
+                    <h3 class="platform-name" data-key="platform-discord">Discord</h3>
+                    <p class="platform-desc" data-key="platform-discord-desc">Usernames, messages, servers</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🎮</div>
+                    <h3 class="platform-name" data-key="platform-gaming">Gaming</h3>
+                    <p class="platform-desc" data-key="platform-gaming-desc">PUBG, Free Fire, MLBB names</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🎵</div>
+                    <h3 class="platform-name" data-key="platform-tiktok">TikTok</h3>
+                    <p class="platform-desc" data-key="platform-tiktok-desc">Profile, video captions</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">🐦</div>
+                    <h3 class="platform-name" data-key="platform-twitter">Twitter/X</h3>
+                    <p class="platform-desc" data-key="platform-twitter-desc">Tweets, bio, display name</p>
+                </div>
+                <div class="platform-card">
+                    <div class="platform-icon">📱</div>
+                    <h3 class="platform-name" data-key="platform-whatsapp">WhatsApp</h3>
+                    <p class="platform-desc" data-key="platform-whatsapp-desc">Status, messages, groups</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="seo-section" aria-labelledby="faq">
+            <h2 class="section-title" id="faq" data-key="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-key="faq1-q">What is a Fancy Text Generator?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-key="faq1-a">A Fancy Text Generator is an online tool that converts normal text into stylish Unicode characters. These aren't actual fonts, but special symbols that look like different font styles. This allows the text to be copied and pasted into any platform that supports Unicode, including social media, games, and messaging apps.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-key="faq2-q">Is it free to use?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-key="faq2-a">Yes! Our Fancy Text Generator is completely free to use. No sign-up required, no hidden fees, no limits. Generate as much fancy text as you want!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-key="faq3-q">Will fancy text work on Instagram/Discord/PUBG?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-key="faq3-a">Yes! The fancy text generated here uses Unicode characters which are supported by most platforms including Instagram, Discord, TikTok, Twitter, Facebook, PUBG, Free Fire, and many more. Some platforms may have character restrictions, so certain styles might not work everywhere.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-key="faq4-q">Why are some characters not converting?</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-key="faq4-a">Unicode fancy fonts primarily support Latin alphabet (A-Z, a-z) and numbers. Special characters, punctuation, and characters from other languages (Korean, Chinese, etc.) usually remain unchanged as there are no Unicode equivalents for them in most fancy styles.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span data-key="faq5-q">한국어도 변환되나요? (Is Korean converted?)</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p data-key="faq5-a">유니코드 fancy 폰트는 주로 영문 알파벳(A-Z, a-z)과 숫자를 지원합니다. 한글은 대부분의 스타일에서 그대로 유지됩니다. 하지만 취소선, 밑줄, Zalgo 같은 효과 스타일은 한글에도 적용됩니다! (Unicode fancy fonts mainly support the English alphabet (A-Z, a-z) and numbers. Korean characters are mostly kept as they are in most styles. However, effect styles like strikethrough, underline, and Zalgo can be applied to Korean as well!)</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <footer>
-            <p>Made with ❤️ | <a href="https://github.com" target="_blank">GitHub</a>에서 소스 코드 보기</p>
+            <p data-key="footer-title">Fancy Text Generator - Free Unicode Font Converter</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="#how-to-use" data-key="footer-how-to-use">How to Use</a> ·
+                <a href="#faq" data-key="footer-faq">FAQ</a> ·
+                <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.8rem;" data-key="footer-love">Made with care for creators worldwide</p>
         </footer>
     </div>
 
-    <div class="toast" id="toast">복사되었습니다!</div>
+    <div class="toast" id="toast">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+        <span id="toastMessage">Copied to clipboard!</span>
+    </div>
 
     <script>
-        // 유니코드 문자 매핑 정의
+        // Text Decorators
+        const decorators = [
+            { left: '꧁༺', right: '༻꧂' },
+            { left: '★彡', right: '彡★' },
+            { left: '【', right: '】' },
+            { left: '『', right: '』' },
+            { left: '▄︻┻═┳一', right: '' },
+            { left: '◤◢◣◥', right: '◤◢◣◥' },
+            { left: '༄ᶦᶰᵈ᭄✿', right: '࿐' },
+            { left: '꧁☆', right: '☆꧂' },
+            { left: '•°•°•', right: '•°•°•' },
+            { left: '⚔️', right: '⚔️' },
+            { left: '✧･ﾟ: *', right: '* :･ﾟ✧' },
+            { left: '═══════════', right: '═══════════' },
+            { left: '▀▄▀▄', right: '▄▀▄▀' },
+            { left: '『••✎', right: '✎••』' },
+            { left: '╰⊱♥⊱╮', right: '╭⊱♥⊱╯' },
+            { left: '「✦', right: '✦」' }
+        ];
+
+        // Unicode character mappings
         const charMaps = {
             bold: {
                 name: '𝗕𝗼𝗹𝗱 (굵게)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D5D4 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D5EE + i);
-                    return acc;
-                }, {}),
-                numbers: '0123456789'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D7EC + i);
-                    return acc;
-                }, {})
+                category: ['bold', 'popular'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D5D4 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D5EE + i); return acc; }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D7EC + i); return acc; }, {})
             },
             italic: {
                 name: '𝘐𝘵𝘢𝘭𝘪𝘤 (기울임)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D608 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D622 + i);
-                    return acc;
-                }, {})
+                category: ['bold', 'popular'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D608 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D622 + i); return acc; }, {})
             },
             boldItalic: {
                 name: '𝘽𝙤𝙡𝙙 𝙄𝙩𝙖𝙡𝙞𝙘 (굵은 기울임)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D63C + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D656 + i);
-                    return acc;
-                }, {})
+                category: ['bold'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D63C + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D656 + i); return acc; }, {})
             },
             script: {
                 name: '𝒮𝒸𝓇𝒾𝓅𝓉 (필기체)',
+                category: ['fancy', 'popular'],
                 upper: Object.fromEntries('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((c, i) => {
                     const special = { B: 'ℬ', E: 'ℰ', F: 'ℱ', H: 'ℋ', I: 'ℐ', L: 'ℒ', M: 'ℳ', R: 'ℛ' };
                     return [c, special[c] || String.fromCodePoint(0x1D49C + i)];
@@ -329,209 +1002,281 @@
             },
             boldScript: {
                 name: '𝓑𝓸𝓵𝓭 𝓢𝓬𝓻𝓲𝓹𝓽 (굵은 필기체)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D4D0 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D4EA + i);
-                    return acc;
-                }, {})
+                category: ['fancy', 'popular'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D4D0 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D4EA + i); return acc; }, {})
             },
             fraktur: {
                 name: '𝔉𝔯𝔞𝔨𝔱𝔲𝔯 (고딕체)',
+                category: ['fancy', 'gaming'],
                 upper: Object.fromEntries('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((c, i) => {
                     const special = { C: 'ℭ', H: 'ℌ', I: 'ℑ', R: 'ℜ', Z: 'ℨ' };
                     return [c, special[c] || String.fromCodePoint(0x1D504 + i)];
                 })),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D51E + i);
-                    return acc;
-                }, {})
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D51E + i); return acc; }, {})
             },
             boldFraktur: {
                 name: '𝕭𝖔𝖑𝖉 𝕱𝖗𝖆𝖐𝖙𝖚𝖗 (굵은 고딕체)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D56C + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D586 + i);
-                    return acc;
-                }, {})
+                category: ['fancy', 'gaming'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D56C + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D586 + i); return acc; }, {})
             },
             doubleStruck: {
                 name: '𝔻𝕠𝕦𝕓𝕝𝕖-𝕊𝕥𝕣𝕦𝕔𝕜 (외곽선)',
+                category: ['fancy', 'popular'],
                 upper: Object.fromEntries('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((c, i) => {
                     const special = { C: 'ℂ', H: 'ℍ', N: 'ℕ', P: 'ℙ', Q: 'ℚ', R: 'ℝ', Z: 'ℤ' };
                     return [c, special[c] || String.fromCodePoint(0x1D538 + i)];
                 })),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D552 + i);
-                    return acc;
-                }, {}),
-                numbers: '0123456789'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D7D8 + i);
-                    return acc;
-                }, {})
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D552 + i); return acc; }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D7D8 + i); return acc; }, {})
             },
             monospace: {
                 name: '𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎 (고정폭)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D670 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D68A + i);
-                    return acc;
-                }, {}),
-                numbers: '0123456789'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1D7F6 + i);
-                    return acc;
-                }, {})
+                category: ['bold'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D670 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D68A + i); return acc; }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D7F6 + i); return acc; }, {})
             },
             circled: {
                 name: 'Ⓒⓘⓡⓒⓛⓔⓓ (원형)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x24B6 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x24D0 + i);
-                    return acc;
-                }, {}),
-                numbers: { '0': '⓪', ...'123456789'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x2460 + i);
-                    return acc;
-                }, {}) }
+                category: ['symbols', 'popular'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x24B6 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x24D0 + i); return acc; }, {}),
+                numbers: { '0': '⓪', ...'123456789'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x2460 + i); return acc; }, {}) }
             },
             negativeCircled: {
-                name: '🅐🅑🅒 Negative Circled (검은 원형)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1F150 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1F150 + i);
-                    return acc;
-                }, {}),
-                numbers: '0123456789'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x24FF - 10 + i + 1);
-                    return acc;
-                }, {})
+                name: '🅐🅑🅒 Negative Circled (검은 원)',
+                category: ['symbols', 'gaming'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1F150 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1F150 + i); return acc; }, {})
             },
             squared: {
                 name: '🄰🄱🄲 Squared (사각형)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1F130 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1F130 + i);
-                    return acc;
-                }, {})
+                category: ['symbols', 'gaming'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1F130 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1F130 + i); return acc; }, {})
             },
             negativeSquared: {
                 name: '🅰🅱🅲 Negative Squared (검은 사각형)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1F170 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1F170 + i);
-                    return acc;
-                }, {})
+                category: ['symbols', 'gaming', 'popular'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1F170 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1F170 + i); return acc; }, {})
             },
             smallCaps: {
                 name: 'Sᴍᴀʟʟ Cᴀᴘs (작은 대문자)',
+                category: ['fancy'],
                 upper: {},
-                lower: {
-                    a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ғ', g: 'ɢ', h: 'ʜ',
-                    i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ', o: 'ᴏ', p: 'ᴘ',
-                    q: 'ǫ', r: 'ʀ', s: 's', t: 'ᴛ', u: 'ᴜ', v: 'ᴠ', w: 'ᴡ', x: 'x',
-                    y: 'ʏ', z: 'ᴢ'
-                }
+                lower: { a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ғ', g: 'ɢ', h: 'ʜ', i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ', o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 's', t: 'ᴛ', u: 'ᴜ', v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ' }
             },
             upsideDown: {
                 name: 'uʍoᗡ ǝpᴉsd∩ (뒤집기)',
-                upper: {
-                    A: '∀', B: 'ꓭ', C: 'Ↄ', D: 'ᗡ', E: 'Ǝ', F: 'Ⅎ', G: '⅁', H: 'H',
-                    I: 'I', J: 'ſ', K: 'ꓘ', L: '˥', M: 'W', N: 'N', O: 'O', P: 'Ԁ',
-                    Q: 'Ꝺ', R: 'ꓤ', S: 'S', T: '⊥', U: '∩', V: 'Λ', W: 'M', X: 'X',
-                    Y: '⅄', Z: 'Z'
-                },
-                lower: {
-                    a: 'ɐ', b: 'q', c: 'ɔ', d: 'p', e: 'ǝ', f: 'ɟ', g: 'ƃ', h: 'ɥ',
-                    i: 'ᴉ', j: 'ɾ', k: 'ʞ', l: 'l', m: 'ɯ', n: 'u', o: 'o', p: 'd',
-                    q: 'b', r: 'ɹ', s: 's', t: 'ʇ', u: 'n', v: 'ʌ', w: 'ʍ', x: 'x',
-                    y: 'ʎ', z: 'z'
-                },
+                category: ['effects', 'popular'],
+                upper: { A: '∀', B: 'ꓭ', C: 'Ↄ', D: 'ᗡ', E: 'Ǝ', F: 'Ⅎ', G: '⅁', H: 'H', I: 'I', J: 'ſ', K: 'ꓘ', L: '˥', M: 'W', N: 'N', O: 'O', P: 'Ԁ', Q: 'Ꝺ', R: 'ꓤ', S: 'S', T: '⊥', U: '∩', V: 'Λ', W: 'M', X: 'X', Y: '⅄', Z: 'Z' },
+                lower: { a: 'ɐ', b: 'q', c: 'ɔ', d: 'p', e: 'ǝ', f: 'ɟ', g: 'ƃ', h: 'ɥ', i: 'ᴉ', j: 'ɾ', k: 'ʞ', l: 'l', m: 'ɯ', n: 'u', o: 'o', p: 'd', q: 'b', r: 'ɹ', s: 's', t: 'ʇ', u: 'n', v: 'ʌ', w: 'ʍ', x: 'x', y: 'ʎ', z: 'z' },
                 reverse: true
             },
             fullwidth: {
                 name: 'Ｆｕｌｌｗｉｄｔｈ (전각문자)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0xFF21 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0xFF41 + i);
-                    return acc;
-                }, {}),
-                numbers: '0123456789'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0xFF10 + i);
-                    return acc;
-                }, {}),
+                category: ['effects'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0xFF21 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0xFF41 + i); return acc; }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0xFF10 + i); return acc; }, {}),
                 space: '　'
             },
             strikethrough: {
                 name: 'S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ (취소선)',
+                category: ['effects', 'popular'],
                 combiner: '\u0336'
             },
             underline: {
                 name: 'U̲n̲d̲e̲r̲l̲i̲n̲e̲ (밑줄)',
+                category: ['effects'],
                 combiner: '\u0332'
             },
             superscript: {
                 name: 'ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ (위첨자)',
-                upper: {
-                    A: 'ᴬ', B: 'ᴮ', C: 'ᶜ', D: 'ᴰ', E: 'ᴱ', F: 'ᶠ', G: 'ᴳ', H: 'ᴴ',
-                    I: 'ᴵ', J: 'ᴶ', K: 'ᴷ', L: 'ᴸ', M: 'ᴹ', N: 'ᴺ', O: 'ᴼ', P: 'ᴾ',
-                    Q: 'Q', R: 'ᴿ', S: 'ˢ', T: 'ᵀ', U: 'ᵁ', V: 'ⱽ', W: 'ᵂ', X: 'ˣ',
-                    Y: 'ʸ', Z: 'ᶻ'
-                },
-                lower: {
-                    a: 'ᵃ', b: 'ᵇ', c: 'ᶜ', d: 'ᵈ', e: 'ᵉ', f: 'ᶠ', g: 'ᵍ', h: 'ʰ',
-                    i: 'ⁱ', j: 'ʲ', k: 'ᵏ', l: 'ˡ', m: 'ᵐ', n: 'ⁿ', o: 'ᵒ', p: 'ᵖ',
-                    q: 'q', r: 'ʳ', s: 'ˢ', t: 'ᵗ', u: 'ᵘ', v: 'ᵛ', w: 'ʷ', x: 'ˣ',
-                    y: 'ʸ', z: 'ᶻ'
-                },
-                numbers: {
-                    '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
-                    '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
-                }
+                category: ['effects'],
+                upper: { A: 'ᴬ', B: 'ᴮ', C: 'ᶜ', D: 'ᴰ', E: 'ᴱ', F: 'ᶠ', G: 'ᴳ', H: 'ᴴ', I: 'ᴵ', J: 'ᴶ', K: 'ᴷ', L: 'ᴸ', M: 'ᴹ', N: 'ᴺ', O: 'ᴼ', P: 'ᴾ', Q: 'Q', R: 'ᴿ', S: 'ˢ', T: 'ᵀ', U: 'ᵁ', V: 'ⱽ', W: 'ᵂ', X: 'ˣ', Y: 'ʸ', Z: 'ᶻ' },
+                lower: { a: 'ᵃ', b: 'ᵇ', c: 'ᶜ', d: 'ᵈ', e: 'ᵉ', f: 'ᶠ', g: 'ᵍ', h: 'ʰ', i: 'ⁱ', j: 'ʲ', k: 'ᵏ', l: 'ˡ', m: 'ᵐ', n: 'ⁿ', o: 'ᵒ', p: 'ᵖ', q: 'q', r: 'ʳ', s: 'ˢ', t: 'ᵗ', u: 'ᵘ', v: 'ᵛ', w: 'ʷ', x: 'ˣ', y: 'ʸ', z: 'ᶻ' },
+                numbers: { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' }
             },
             parenthesized: {
                 name: '⒫⒜⒭⒠⒩⒯⒣⒠⒮⒤⒵⒠⒟ (괄호)',
-                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x1F110 + i);
-                    return acc;
-                }, {}),
-                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
-                    acc[c] = String.fromCodePoint(0x249C + i);
-                    return acc;
-                }, {})
+                category: ['symbols'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1F110 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x249C + i); return acc; }, {})
+            },
+            // New styles
+            sansSerif: {
+                name: '𝖲𝖺𝗇𝗌-𝖲𝖾𝗋𝗂𝖿 (산세리프)',
+                category: ['bold'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D5A0 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D5BA + i); return acc; }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D7E2 + i); return acc; }, {})
+            },
+            sansSerifItalic: {
+                name: '𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤',
+                category: ['bold'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D608 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D622 + i); return acc; }, {})
+            },
+            serifBold: {
+                name: '𝐒𝐞𝐫𝐢𝐟 𝐁𝐨𝐥𝐝 (세리프 굵게)',
+                category: ['bold'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D400 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D41A + i); return acc; }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D7CE + i); return acc; }, {})
+            },
+            serifItalic: {
+                name: '𝑆𝑒𝑟𝑖𝑓 𝐼𝑡𝑎𝑙𝑖𝑐 (세리프 기울임)',
+                category: ['bold'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D434 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D44E + i); return acc; }, {})
+            },
+            serifBoldItalic: {
+                name: '𝑺𝒆𝒓𝒊𝒇 𝑩𝒐𝒍𝒅 𝑰𝒕𝒂𝒍𝒊𝒄',
+                category: ['bold'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D468 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1D482 + i); return acc; }, {})
+            },
+            subscript: {
+                name: 'ₛᵤᵦₛ꜀ᵣᵢₚₜ (아래첨자)',
+                category: ['effects'],
+                lower: { a: 'ₐ', e: 'ₑ', h: 'ₕ', i: 'ᵢ', j: 'ⱼ', k: 'ₖ', l: 'ₗ', m: 'ₘ', n: 'ₙ', o: 'ₒ', p: 'ₚ', r: 'ᵣ', s: 'ₛ', t: 'ₜ', u: 'ᵤ', v: 'ᵥ', x: 'ₓ' },
+                numbers: { '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄', '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉' }
+            },
+            dotted: {
+                name: 'ḋȯṫṫėḋ (점 위)',
+                category: ['effects'],
+                upper: { A: 'Ȧ', B: 'Ḃ', C: 'Ċ', D: 'Ḋ', E: 'Ė', F: 'Ḟ', G: 'Ġ', H: 'Ḣ', I: 'İ', M: 'Ṁ', N: 'Ṅ', O: 'Ȯ', P: 'Ṗ', R: 'Ṙ', S: 'Ṡ', T: 'Ṫ', W: 'Ẇ', X: 'Ẋ', Y: 'Ẏ', Z: 'Ż' },
+                lower: { a: 'ȧ', b: 'ḃ', c: 'ċ', d: 'ḋ', e: 'ė', f: 'ḟ', g: 'ġ', h: 'ḣ', m: 'ṁ', n: 'ṅ', o: 'ȯ', p: 'ṗ', r: 'ṙ', s: 'ṡ', t: 'ṫ', w: 'ẇ', x: 'ẋ', y: 'ẏ', z: 'ż' }
+            },
+            wavy: {
+                name: 'w̴a̴v̴y̴ (물결)',
+                category: ['effects'],
+                combiner: '\u0334'
+            },
+            doubleUnderline: {
+                name: 'D̳o̳u̳b̳l̳e̳ ̳U̳n̳d̳e̳r̳l̳i̳n̳e̳ (이중 밑줄)',
+                category: ['effects'],
+                combiner: '\u0333'
+            },
+            crossed: {
+                name: 'C̷r̷o̷s̷s̷e̷d̷ (빗금)',
+                category: ['effects'],
+                combiner: '\u0337'
+            },
+            // Zalgo styles
+            zalgoMild: {
+                name: 'Z̤a̤l̤g̤o̤ ̤M̤i̤l̤d̤ (살짝 글리치)',
+                category: ['effects', 'gaming'],
+                zalgo: 'mild'
+            },
+            zalgoMedium: {
+                name: 'Z̨̛a̢͝l̵̃g̸̈o̶̓ ̵͠M̷̛e̷̔d̵̑i̸͝u̶̇m̶͛ (글리치)',
+                category: ['effects', 'gaming', 'popular'],
+                zalgo: 'medium'
+            },
+            zalgoInsane: {
+                name: 'Z̸̢̛̲̠͙͖̥̼͖̫̼̈́̑̄̓̐̓̏͊̑̐a̵̢̡̯͖̣̙̼͙̎̄̈́̔͑̉̀̎͝l̶̨̺͔̩̣͈͙̱̲̭̾̄͐͋͆̋͠g̴̛̮̠̾͗̔̊̄̌̐͝o̷̢̰̼̗͙̺̫̭̰͆̓̀̀̇',
+                category: ['effects', 'gaming'],
+                zalgo: 'insane'
+            },
+            // Regional indicators
+            regional: {
+                name: '🇭🇪🇱🇱🇴 Regional (깃발)',
+                category: ['symbols'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1F1E6 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x1F1E6 + i); return acc; }, {})
+            },
+            // Currency style
+            currency: {
+                name: '₵u₹₹€₦₵¥ (화폐)',
+                category: ['symbols', 'fancy'],
+                upper: { A: '₳', B: '฿', C: '₵', D: 'Đ', E: '€', F: '₣', G: 'Ǥ', H: 'Ħ', I: 'ł', K: '₭', L: '£', M: '₼', N: '₦', O: 'Ø', P: '₱', R: '₹', S: '$', T: '₮', W: '₩', Y: '¥' },
+                lower: { a: '₳', b: '฿', c: '₵', d: 'đ', e: '€', f: '₣', g: 'ǥ', h: 'ħ', i: 'ł', k: '₭', l: '£', m: '₼', n: '₦', o: 'ø', p: '₱', r: '₹', s: '$', t: '₮', w: '₩', y: '¥' }
+            },
+            // Spaced out
+            spaced: {
+                name: 'S P A C E D (띄어쓰기)',
+                category: ['effects'],
+                spacer: true
+            },
+            // Greek style
+            greek: {
+                name: 'GЯΣΣK SƬYLΣ (그리스)',
+                category: ['fancy', 'gaming'],
+                upper: { A: 'Λ', B: 'β', C: 'C', D: 'Ð', E: 'Σ', F: 'F', G: 'G', H: 'Ħ', I: 'I', J: 'J', K: 'K', L: 'L', M: 'M', N: 'И', O: 'Ø', P: 'Þ', Q: 'Q', R: 'Я', S: 'S', T: 'Ŧ', U: 'U', V: 'V', W: 'Ш', X: 'Ж', Y: 'Ψ', Z: 'Z' },
+                lower: { a: 'α', b: 'в', c: 'c', d: 'đ', e: 'є', f: 'f', g: 'g', h: 'ђ', i: 'ι', j: 'נ', k: 'к', l: 'ℓ', m: 'm', n: 'и', o: 'σ', p: 'ρ', q: 'q', r: 'я', s: 'ѕ', t: 'т', u: 'υ', v: 'ν', w: 'ω', x: 'χ', y: 'у', z: 'z' }
+            },
+            // Bubble text
+            bubble: {
+                name: 'ⓑⓤⓑⓑⓛⓔ (버블)',
+                category: ['symbols'],
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x24B6 + i); return acc; }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => { acc[c] = String.fromCodePoint(0x24D0 + i); return acc; }, {})
+            },
+            // Inverted
+            inverted: {
+                name: 'IᴎVƎЯTƎᗡ (반전)',
+                category: ['effects', 'gaming'],
+                upper: { A: 'Ɐ', B: 'ᗺ', C: 'Ↄ', D: 'ᗡ', E: 'Ǝ', F: 'Ⅎ', G: '⅁', H: 'H', I: 'I', J: 'ᒋ', K: 'ꓘ', L: '⅂', M: 'W', N: 'ᴎ', O: 'O', P: 'Ԁ', Q: 'Ò', R: 'ᴚ', S: 'S', T: '⊥', U: '∩', V: 'Ʌ', W: 'M', X: 'X', Y: '⅄', Z: 'Z' },
+                lower: { a: 'ɐ', b: 'q', c: 'ɔ', d: 'p', e: 'ǝ', f: 'ɟ', g: 'ᵷ', h: 'ɥ', i: 'ᴉ', j: 'ɾ', k: 'ʞ', l: 'ן', m: 'ɯ', n: 'u', o: 'o', p: 'd', q: 'b', r: 'ɹ', s: 's', t: 'ʇ', u: 'n', v: 'ʌ', w: 'ʍ', x: 'x', y: 'ʎ', z: 'z' }
+            },
+            // Mirrored
+            mirrored: {
+                name: 'MIЯЯOЯƎᗡ (거울)',
+                category: ['effects'],
+                upper: { A: 'A', B: 'ᗺ', C: 'Ↄ', D: 'ᗡ', E: 'Ǝ', F: 'ꟻ', G: '⅁', H: 'H', I: 'I', J: 'Ⴑ', K: '⋊', L: '⅃', M: 'M', N: 'ᴎ', O: 'O', P: 'ꟼ', Q: 'Ọ', R: 'Я', S: 'Ꙅ', T: 'T', U: 'U', V: 'V', W: 'W', X: 'X', Y: 'Y', Z: 'Ƹ' },
+                lower: { a: 'ɒ', b: 'd', c: 'ↄ', d: 'b', e: 'ɘ', f: 'ꟻ', g: 'ǫ', h: 'ʜ', i: 'i', j: 'ꞁ', k: 'ʞ', l: 'l', m: 'm', n: 'ᴎ', o: 'o', p: 'q', q: 'p', r: 'ɿ', s: 'ꙅ', t: 'ƚ', u: 'u', v: 'v', w: 'w', x: 'x', y: 'y', z: 'ƹ' },
+                reverse: true
             }
         };
 
-        // 텍스트 변환 함수
+        // Zalgo combining characters
+        const zalgoUp = ['\u030d', '\u030e', '\u0304', '\u0305', '\u033f', '\u0311', '\u0306', '\u0310', '\u0352', '\u0357', '\u0351', '\u0307', '\u0308', '\u030a', '\u0342', '\u0343', '\u0344', '\u034a', '\u034b', '\u034c', '\u0303', '\u0302', '\u030c', '\u0350', '\u0300', '\u0301', '\u030b', '\u030f', '\u0312', '\u0313', '\u0314', '\u033d', '\u0309', '\u0363', '\u0364', '\u0365', '\u0366', '\u0367', '\u0368', '\u0369', '\u036a', '\u036b', '\u036c', '\u036d', '\u036e', '\u036f', '\u033e', '\u035b'];
+        const zalgoMid = ['\u0315', '\u031b', '\u0340', '\u0341', '\u0358', '\u0321', '\u0322', '\u0327', '\u0328', '\u0334', '\u0335', '\u0336', '\u034f', '\u035c', '\u035d', '\u035e', '\u035f', '\u0360', '\u0362', '\u0338', '\u0337', '\u0361', '\u0489'];
+        const zalgoDown = ['\u0316', '\u0317', '\u0318', '\u0319', '\u031c', '\u031d', '\u031e', '\u031f', '\u0320', '\u0324', '\u0325', '\u0326', '\u0329', '\u032a', '\u032b', '\u032c', '\u032d', '\u032e', '\u032f', '\u0330', '\u0331', '\u0332', '\u0333', '\u0339', '\u033a', '\u033b', '\u033c', '\u0345', '\u0347', '\u0348', '\u0349', '\u034d', '\u034e', '\u0353', '\u0354', '\u0355', '\u0356', '\u0359', '\u035a', '\u0323'];
+
+        function addZalgo(text, intensity) {
+            const levels = { mild: [1, 1, 1], medium: [3, 2, 3], insane: [8, 5, 8] };
+            const [upMax, midMax, downMax] = levels[intensity] || levels.mild;
+
+            return text.split('').map(char => {
+                if (char === ' ') return char;
+                let result = char;
+                for (let i = 0; i < Math.floor(Math.random() * upMax); i++) {
+                    result += zalgoUp[Math.floor(Math.random() * zalgoUp.length)];
+                }
+                for (let i = 0; i < Math.floor(Math.random() * midMax); i++) {
+                    result += zalgoMid[Math.floor(Math.random() * zalgoMid.length)];
+                }
+                for (let i = 0; i < Math.floor(Math.random() * downMax); i++) {
+                    result += zalgoDown[Math.floor(Math.random() * zalgoDown.length)];
+                }
+                return result;
+            }).join('');
+        }
+
+        // Convert text using style
         function convertText(text, style) {
             const map = charMaps[style];
             if (!map) return text;
 
-            // 결합 문자 스타일 (취소선, 밑줄)
+            // Zalgo style
+            if (map.zalgo) {
+                return addZalgo(text, map.zalgo);
+            }
+
+            // Spacer style
+            if (map.spacer) {
+                return text.split('').join(' ');
+            }
+
+            // Combining character styles
             if (map.combiner) {
-                return text.split('').map(c => c + map.combiner).join('');
+                return text.split('').map(c => c === ' ' ? c : c + map.combiner).join('');
             }
 
             let result = text.split('').map(char => {
@@ -542,7 +1287,6 @@
                 return char;
             }).join('');
 
-            // 뒤집기 스타일인 경우 문자열 반전
             if (map.reverse) {
                 result = result.split('').reverse().join('');
             }
@@ -550,105 +1294,371 @@
             return result;
         }
 
-        // 클립보드에 복사
-        async function copyToClipboard(text, button) {
+        // Copy to clipboard
+        async function copyToClipboard(text, button = null, messageKey = 'toast-copied') {
             try {
+                const message = translations[currentLanguage][messageKey] || messageKey;
                 await navigator.clipboard.writeText(text);
 
-                // 버튼 상태 변경
-                const originalHTML = button.innerHTML;
-                button.classList.add('copied');
-                button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> 복사됨`;
+                if (button) {
+                    const originalHTML = button.innerHTML;
+                    button.classList.add('copied');
+                    button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> Copied!`;
 
-                // 토스트 표시
-                showToast();
+                    setTimeout(() => {
+                        button.classList.remove('copied');
+                        button.innerHTML = originalHTML;
+                    }, 2000);
+                }
 
-                setTimeout(() => {
-                    button.classList.remove('copied');
-                    button.innerHTML = originalHTML;
-                }, 2000);
+                showToast(message);
             } catch (err) {
-                console.error('복사 실패:', err);
+                console.error('Copy failed:', err);
             }
         }
 
-        // 토스트 표시
-        function showToast() {
+        // Show toast notification
+        function showToast(message = 'Copied to clipboard!') {
             const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
+            setTimeout(() => toast.classList.remove('show'), 2000);
         }
 
-        // 스타일 카드 생성
+        // Create decorator item
+        function createDecoratorItem(decorator, index) {
+            const item = document.createElement('div');
+            item.className = 'decorator-item';
+            item.dataset.index = index;
+
+            const inputText = document.getElementById('inputText').value || 'Text';
+            const preview = `${decorator.left} ${inputText} ${decorator.right}`;
+
+            item.innerHTML = `
+                <span class="decorator-preview">${preview}</span>
+                <button class="decorator-copy">Copy</button>
+            `;
+
+            item.addEventListener('click', (e) => {
+                if (!e.target.classList.contains('decorator-copy')) {
+                    const text = item.querySelector('.decorator-preview').textContent;
+                    copyToClipboard(text, null, 'toast-copied-decorator');
+                }
+            });
+
+            item.querySelector('.decorator-copy').addEventListener('click', (e) => {
+                e.stopPropagation();
+                const text = item.querySelector('.decorator-preview').textContent;
+                copyToClipboard(text, e.target, 'toast-copied-decorator');
+            });
+
+            return item;
+        }
+
+        // Create style card
         function createStyleCard(styleName, styleConfig) {
             const card = document.createElement('div');
             card.className = 'style-card';
             card.dataset.style = styleName;
+            card.dataset.categories = (styleConfig.category || []).join(',');
+
+            if (styleConfig.category && styleConfig.category.includes('popular')) {
+                card.classList.add('popular');
+            }
 
             card.innerHTML = `
                 <div class="style-header">
-                    <span class="style-name">${styleConfig.name}</span>
+                    <div>
+                        <span class="style-name" data-key-style="${styleName}">${styleConfig.name}</span>
+                    </div>
                     <button class="copy-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                         </svg>
-                        복사
+                        Copy
                     </button>
                 </div>
-                <div class="style-preview empty">텍스트를 입력하세요...</div>
+                <div class="style-preview empty" data-key-empty="empty-preview">Type text above...</div>
             `;
 
             const copyBtn = card.querySelector('.copy-btn');
+            const preview = card.querySelector('.style-preview');
+
             copyBtn.addEventListener('click', () => {
-                const preview = card.querySelector('.style-preview');
                 if (!preview.classList.contains('empty')) {
                     copyToClipboard(preview.textContent, copyBtn);
+                }
+            });
+
+            preview.addEventListener('click', () => {
+                if (!preview.classList.contains('empty')) {
+                    copyToClipboard(preview.textContent, null, 'toast-copied');
                 }
             });
 
             return card;
         }
 
-        // 모든 프리뷰 업데이트
+        // Update all previews
         function updateAllPreviews(text) {
-            const cards = document.querySelectorAll('.style-card');
-            cards.forEach(card => {
+            // Update style cards
+            document.querySelectorAll('.style-card').forEach(card => {
                 const style = card.dataset.style;
                 const preview = card.querySelector('.style-preview');
+                const emptyPreviewKey = preview.dataset.keyEmpty;
 
                 if (text.trim() === '') {
-                    preview.textContent = '텍스트를 입력하세요...';
+                    preview.textContent = translations[currentLanguage][emptyPreviewKey] || 'Type text above...';
                     preview.classList.add('empty');
                 } else {
                     preview.textContent = convertText(text, style);
                     preview.classList.remove('empty');
                 }
             });
+
+            // Update decorators
+            updateDecorators(text);
+
+            // Update character count
+            const count = text.length;
+            const charText = translations[currentLanguage]['char-count'] || 'characters';
+            document.getElementById('charCount').textContent = `${count} ${charText}`;
         }
 
-        // 초기화
+        // Update decorators
+        function updateDecorators(text) {
+            const grid = document.getElementById('decoratorGrid');
+            grid.innerHTML = '';
+
+            const displayText = text.trim() || 'Text';
+            decorators.forEach((decorator, index) => {
+                const item = createDecoratorItem(decorator, index);
+                const preview = item.querySelector('.decorator-preview');
+                preview.textContent = `${decorator.left} ${displayText} ${decorator.right}`;
+                grid.appendChild(item);
+            });
+        }
+
+        // Filter styles by category
+        function filterByCategory(category) {
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.category === category);
+            });
+
+            document.querySelectorAll('.style-card').forEach(card => {
+                const categories = card.dataset.categories.split(',');
+                if (category === 'all' || categories.includes(category)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Search styles
+        function searchStyles(query) {
+            const lowerQuery = query.toLowerCase();
+            document.querySelectorAll('.style-card').forEach(card => {
+                const name = card.querySelector('.style-name').textContent.toLowerCase();
+                card.style.display = name.includes(lowerQuery) ? '' : 'none';
+            });
+        }
+
+        // Clear text
+        function clearText() {
+            document.getElementById('inputText').value = '';
+            updateAllPreviews('');
+        }
+
+        // Copy all styles
+        function copyAllStyles() {
+            const text = document.getElementById('inputText').value;
+            if (!text.trim()) {
+                showToast(translations[currentLanguage]['toast-enter-text'] || 'Please enter some text first!');
+                return;
+            }
+
+            let allText = '';
+            Object.entries(charMaps).forEach(([name, config]) => {
+                const converted = convertText(text, name);
+                allText += `${config.name}:\n${converted}\n\n`;
+            });
+
+            copyToClipboard(allText.trim(), null, 'toast-copied-all');
+        }
+
+        // Scroll to styles
+        function scrollToStyles() {
+            document.getElementById('stylesGrid').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Toggle FAQ
+        function toggleFaq(element) {
+            const item = element.closest('.faq-item');
+            item.classList.toggle('open');
+        }
+
+        // Initialize
         function init() {
             const grid = document.getElementById('stylesGrid');
             const input = document.getElementById('inputText');
 
-            // 스타일 카드 생성
-            Object.entries(charMaps).forEach(([name, config]) => {
+            // Create style cards (popular ones first)
+            const sortedEntries = Object.entries(charMaps).sort((a, b) => {
+                const aPopular = a[1].category?.includes('popular') ? 0 : 1;
+                const bPopular = b[1].category?.includes('popular') ? 0 : 1;
+                return aPopular - bPopular;
+            });
+
+            sortedEntries.forEach(([name, config]) => {
                 const card = createStyleCard(name, config);
                 grid.appendChild(card);
             });
 
-            // 입력 이벤트 리스너
+            // Input event listener
             input.addEventListener('input', (e) => {
                 updateAllPreviews(e.target.value);
             });
 
-            // 초기 프리뷰 업데이트
-            updateAllPreviews(input.value);
+            // Category tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    filterByCategory(tab.dataset.category);
+                });
+            });
+
+            // Search
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                searchStyles(e.target.value);
+            });
+
+            // Initial update
+            const browserLang = navigator.language.split('-')[0];
+            const initialLang = translations[browserLang] ? browserLang : 'en';
+            setLanguage(initialLang);
         }
 
-        // DOM 로드 후 초기화
+        let currentLanguage = 'en';
+        
+        const translations = {
+            en: {
+                // Header
+                'logo': 'Fancy Text Generator',
+                'subtitle': 'Transform your text into 100+ stylish Unicode fonts. Perfect for Instagram, Discord, TikTok, and gaming!',
+                'badge-styles': '100+ Styles',
+                'badge-free': 'Free Forever',
+                'badge-no-signup': 'No Sign-up',
+                'badge-instant-copy': 'Instant Copy',
+                // Input
+                'input-label': 'Enter your text',
+                'char-count': 'characters',
+                'input-placeholder': 'Type here to generate fancy text...',
+                'btn-clear': 'Clear',
+                'btn-copy-all': 'Copy All Styles',
+                'btn-view-styles': 'View Styles',
+                // Decorators
+                'decorators-title': 'Text Decorators',
+                // Categories
+                'search-placeholder': 'Search styles...', 
+                'cat-all': 'All',
+                'cat-popular': 'Popular',
+                'cat-bold': 'Bold & Italic',
+                'cat-fancy': 'Fancy Scripts',
+                'cat-symbols': 'Symbols & Shapes',
+                'cat-effects': 'Effects',
+                'cat-gaming': 'Gaming',
+                // How to use
+                'how-to-use-title': 'How to Use Fancy Text Generator',
+                'step1-title': 'Type Your Text',
+                'step1-desc': 'Enter any text in the input box above. Your text will be instantly converted.',
+                'step2-title': 'Choose Your Style',
+                'step2-desc': 'Browse 100+ fancy font styles. Use filters to find the perfect one.',
+                'step3-title': 'Copy & Paste',
+                'step3-desc': 'Click the copy button or the text itself. Paste anywhere you want!',
+                // Where to use
+                'where-to-use-title': 'Where to Use',
+                'where-to-use-desc': 'Our fancy text generator works on almost any platform that supports Unicode. Copy your stylish text and paste it directly!',
+                'platform-instagram': 'Instagram',
+                'platform-instagram-desc': 'Bio, captions, comments',
+                'platform-discord': 'Discord',
+                'platform-discord-desc': 'Usernames, messages, servers',
+                'platform-gaming': 'Gaming',
+                'platform-gaming-desc': 'PUBG, Free Fire, MLBB names',
+                'platform-tiktok': 'TikTok',
+                'platform-tiktok-desc': 'Profile, video captions',
+                'platform-twitter': 'Twitter/X',
+                'platform-twitter-desc': 'Tweets, bio, display name',
+                'platform-whatsapp': 'WhatsApp',
+                'platform-whatsapp-desc': 'Status, messages, groups',
+                // FAQ
+                'faq-title': 'Frequently Asked Questions',
+                'faq1-q': 'What is a Fancy Text Generator?',
+                'faq1-a': "A Fancy Text Generator is an online tool that converts normal text into stylish Unicode characters. These aren't actual fonts, but special symbols that look like different font styles. This allows the text to be copied and pasted into any platform that supports Unicode, including social media, games, and messaging apps.",
+                'faq2-q': 'Is it free to use?',
+                'faq2-a': 'Yes! Our Fancy Text Generator is completely free to use. No sign-up required, no hidden fees, no limits. Generate as much fancy text as you want!',
+                'faq3-q': 'Will fancy text work on Instagram/Discord/PUBG?',
+                'faq3-a': 'Yes! The fancy text generated here uses Unicode characters which are supported by most platforms including Instagram, Discord, TikTok, Twitter, Facebook, PUBG, Free Fire, and many more. Some platforms may have character restrictions, so certain styles might not work everywhere.',
+                'faq4-q': 'Why are some characters not converting?',
+                'faq4-a': 'Unicode fancy fonts primarily support Latin alphabet (A-Z, a-z) and numbers. Special characters, punctuation, and characters from other languages (Korean, Chinese, etc.) usually remain unchanged as there are no Unicode equivalents for them in most fancy styles.',
+                'faq5-q': '한국어도 변환되나요? (Is Korean converted?)',
+                'faq5-a': '유니코드 fancy 폰트는 주로 영문 알파벳(A-Z, a-z)과 숫자를 지원합니다. 한글은 대부분의 스타일에서 그대로 유지됩니다. 하지만 취소선, 밑줄, Zalgo 같은 효과 스타일은 한글에도 적용됩니다! (Unicode fancy fonts mainly support the English alphabet (A-Z, a-z) and numbers. Korean characters are mostly kept as they are in most styles. However, effect styles like strikethrough, underline, and Zalgo can be applied to Korean as well!)',
+                // Footer
+                'footer-title': 'Fancy Text Generator - Free Unicode Font Converter',
+                'footer-how-to-use': 'How to Use',
+                'footer-faq': 'FAQ',
+                'footer-love': 'Made with care for creators worldwide',
+                // Toast
+                'toast-copied': 'Copied to clipboard!',
+                'toast-copied-decorator': 'Decorator copied!',
+                'toast-copied-all': 'All styles copied!',
+                'toast-enter-text': 'Please enter some text first!',
+                // Empty preview
+                'empty-preview': 'Type text above...', 
+                'style-bold': '𝗕𝗼𝗹𝗱', 'style-italic': '𝘐𝘵𝘢𝘭𝘪𝘤', 'style-boldItalic': '𝘽𝙤𝙡𝙙 𝙄𝙩𝙖𝙡𝙞𝙘', 'style-script': '𝒮𝒸𝓇𝒾𝓅𝓉', 'style-boldScript': '𝓑𝓸𝓵𝓭 𝓢𝓬𝓻𝓲𝓹𝓽', 'style-fraktur': '𝔉𝔯𝔞𝔨𝔱𝔲𝔯', 'style-boldFraktur': '𝕭𝖔𝖑𝖉 𝕱𝖗𝖆𝖐𝖙𝖚𝖗', 'style-doubleStruck': '𝔻𝕠𝕦𝕓𝕝𝕖-𝕊𝕥𝕣𝕦𝕔𝕜', 'style-monospace': '𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎', 'style-circled': 'Ⓒⓘⓡⓒⓛⓔⓓ', 'style-negativeCircled': '🅐🅑🅒 Negative Circled', 'style-squared': '🄰🄱🄲 Squared', 'style-negativeSquared': '🅰🅱🅲 Negative Squared', 'style-smallCaps': 'Sᴍᴀʟʟ Cᴀᴘs', 'style-upsideDown': 'uʍoᗡ ǝpᴉsd∩', 'style-fullwidth': 'Ｆｕｌｌｗｉｄｔｈ', 'style-strikethrough': 'S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶', 'style-underline': 'U̲n̲d̲e̲r̲l̲i̲n̲e̲', 'style-superscript': 'ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ', 'style-parenthesized': '⒫⒜⒭⒠⒩⒯⒣⒠⒮⒤⒵⒠⒟', 'style-sansSerif': '𝖲𝖺𝗇𝗌-𝖲𝖾𝗋𝗂𝖿', 'style-sansSerifItalic': '𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤', 'style-serifBold': '𝐒𝐞𝐫𝐢𝐟 𝐁𝐨𝐥𝐝', 'style-serifItalic': '𝑆𝑒𝑟𝑖𝑓 𝐼𝑡𝑎𝑙𝑖𝑐', 'style-serifBoldItalic': '𝑺𝒆𝒓𝒊𝒇 𝑩𝒐𝒍𝒅 𝑰𝒕𝒂𝒍𝒊𝒄', 'style-subscript': 'ₛᵤᵦₛ꜀ᵣᵢₚₜ', 'style-dotted': 'ḋȯṫṫėḋ', 'style-wavy': 'w̴a̴v̴y̴', 'style-doubleUnderline': 'D̳o̳u̳b̳l̳e̳ ̳U̳n̳d̳e̳r̳l̳i̳n̳e̳', 'style-crossed': 'C̷r̷o̷s̷s̷e̷d̷', 'style-zalgoMild': 'Z̤a̤l̤g̤o̤ ̤M̤i̤l̤d̤', 'style-zalgoMedium': 'Z̨̛a̢͝l̵̃g̸̈o̶̓ ̵͠M̷̛e̷̔d̵̑i̸͝u̶̇m̶͛', 'style-zalgoInsane': 'Z̸̢̛̲̠͙͖̥̼͖̫̼̈́̑̄̓̐̓̏͊̑̐a̵̢̡̯͖̣̙̼͙̎̄̈́̔͑̉̀̎͝l̶̨̺͔̩̣͈͙̱̲̭̾̄͐͋͆̋͠g̴̛̮̠̾͗̔̊̄̌̐͝o̷̢̰̼̗͙̺̫̭̰͆̓̀̀̇', 'style-regional': '🇭🇪🇱🇱🇴 Regional', 'style-currency': '₵u₹₹€₦₵¥', 'style-spaced': 'S P A C E D', 'style-greek': 'GЯΣΣK SƬYLΣ', 'style-bubble': 'ⓑⓤⓑⓑⓛⓔ', 'style-inverted': 'IᴎVƎЯTƎᗡ', 'style-mirrored': 'MIЯЯOЯƎᗡ'
+            },
+            ko: {
+                'logo': '멋진 텍스트 생성기', 'subtitle': '당신의 텍스트를 100개 이상의 스타일리시한 유니코드 폰트로 변환하세요. 인스타그램, 디스코드, 틱톡, 게이밍에 완벽합니다!', 'badge-styles': '100+ 스타일', 'badge-free': '평생 무료', 'badge-no-signup': '가입 필요 없음', 'badge-instant-copy': '즉시 복사', 'input-label': '텍스트를 입력하세요', 'char-count': '자', 'input-placeholder': '이곳에 텍스트를 입력하여 멋진 텍스트를 생성하세요...', 'btn-clear': '지우기', 'btn-copy-all': '모든 스타일 복사', 'btn-view-styles': '스타일 보기', 'decorators-title': '텍스트 꾸미기', 'search-placeholder': '스타일 검색...', 'cat-all': '전체', 'cat-popular': '인기', 'cat-bold': '굵게 & 기울임', 'cat-fancy': '꾸밈 스크립트', 'cat-symbols': '기호 & 모양', 'cat-effects': '효과', 'cat-gaming': '게이밍', 'how-to-use-title': '사용 방법', 'step1-title': '텍스트 입력', 'step1-desc': '위 입력 상자에 텍스트를 입력하세요. 텍스트가 즉시 변환됩니다.', 'step2-title': '스타일 선택', 'step2-desc': '100개 이상의 멋진 폰트 스타일을 탐색하세요. 필터를 사용하여 완벽한 스타일을 찾으세요.', 'step3-title': '복사 & 붙여넣기', 'step3-desc': '복사 버튼이나 텍스트 자체를 클릭하세요. 원하는 곳에 붙여넣으세요!', 'where-to-use-title': '사용처', 'where-to-use-desc': '저희 멋진 텍스트 생성기는 유니코드를 지원하는 거의 모든 플랫폼에서 작동합니다. 스타일리시한 텍스트를 복사하여 직접 붙여넣으세요!', 'platform-instagram': '인스타그램', 'platform-instagram-desc': '프로필, 캡션, 댓글', 'platform-discord': '디스코드', 'platform-discord-desc': '사용자명, 메시지, 서버', 'platform-gaming': '게이밍', 'platform-gaming-desc': '배그, 프리파이어, 모바일 레전드 닉네임', 'platform-tiktok': '틱톡', 'platform-tiktok-desc': '프로필, 영상 캡션', 'platform-twitter': '트위터/X', 'platform-twitter-desc': '트윗, 프로필, 표시 이름', 'platform-whatsapp': '왓츠앱', 'platform-whatsapp-desc': '상태, 메시지, 그룹', 'faq-title': '자주 묻는 질문', 'faq1-q': '멋진 텍스트 생성기란 무엇인가요?', 'faq1-a': '멋진 텍스트 생성기는 일반 텍스트를 스타일리시한 유니코드 문자로 변환하는 온라인 도구입니다. 이것은 실제 폰트가 아니라 다른 폰트 스타일처럼 보이는 특수 기호입니다. 이를 통해 소셜 미디어, 게임, 메시징 앱을 포함한 유니코드 지원 모든 플랫폼에 텍스트를 복사하여 붙여넣을 수 있습니다.', 'faq2-q': '무료인가요?', 'faq2-a': '네! 저희 멋진 텍스트 생성기는 완전히 무료입니다. 가입, 숨겨진 비용, 제한이 없습니다. 원하는 만큼 멋진 텍스트를 생성하세요!', 'faq3-q': '인스타그램/디스코드/배그에서 작동하나요?', 'faq3-a': '네! 여기서 생성된 멋진 텍스트는 인스타그램, 디스코드, 틱톡, 트위터, 페이스북, 배그, 프리파이어 등 대부분의 플랫폼에서 지원하는 유니코드 문자를 사용합니다. 일부 플랫폼에는 문자 제한이 있을 수 있으므로 특정 스타일이 모든 곳에서 작동하지 않을 수 있습니다.', 'faq4-q': '왜 일부 문자는 변환되지 않나요?', 'faq4-a': '유니코드 멋진 폰트는 주로 라틴 알파벳(A-Z, a-z)과 숫자를 지원합니다. 특수 문자, 구두점, 다른 언어(한국어, 중국어 등)의 문자는 대부분의 멋진 스타일에서 유니코드 등가물이 없기 때문에 일반적으로 변경되지 않습니다.', 'faq5-q': '한국어도 변환되나요?', 'faq5-a': '유니코드 fancy 폰트는 주로 영문 알파벳(A-Z, a-z)과 숫자를 지원합니다. 한글은 대부분의 스타일에서 그대로 유지됩니다. 하지만 취소선, 밑줄, Zalgo 같은 효과 스타일은 한글에도 적용됩니다!', 'footer-title': '멋진 텍스트 생성기 - 무료 유니코드 폰트 변환기', 'footer-how-to-use': '사용 방법', 'footer-faq': '자주 묻는 질문', 'footer-love': '전 세계 크리에이터들을 위해 정성껏 만들었습니다', 'toast-copied': '클립보드에 복사되었습니다!', 'toast-copied-decorator': '장식이 복사되었습니다!', 'toast-copied-all': '모든 스타일이 복사되었습니다!', 'toast-enter-text': '먼저 텍스트를 입력해주세요!', 'empty-preview': '위에 텍스트를 입력하세요...', 'style-bold': '𝗕𝗼𝗹𝗱 (굵게)', 'style-italic': '𝘐𝘵𝘢𝘭𝘪𝘤 (기울임)', 'style-boldItalic': '𝘽𝙤𝙡𝙙 𝙄𝙩𝙖𝙡𝙞𝙘 (굵은 기울임)', 'style-script': '𝒮𝒸𝓇𝒾𝓅𝓉 (필기체)', 'style-boldScript': '𝓑𝓸𝓵𝓭 𝓢𝓬𝓻𝓲𝓹𝓽 (굵은 필기체)', 'style-fraktur': '𝔉𝔯𝔞𝔨𝔱𝔲𝔯 (고딕체)', 'style-boldFraktur': '𝕭𝖔𝖑𝖉 𝕱𝖗𝖆𝖐𝖙𝖚𝖗 (굵은 고딕체)', 'style-doubleStruck': '𝔻𝕠𝕦𝕓𝕝𝕖-𝕊𝕥𝕣𝕦𝕔𝕜 (외곽선)', 'style-monospace': '𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎 (고정폭)', 'style-circled': 'Ⓒⓘⓡⓒⓛⓔⓓ (원형)', 'style-negativeCircled': '🅐🅑🅒 Negative Circled (검은 원)', 'style-squared': '🄰🄱🄲 Squared (사각형)', 'style-negativeSquared': '🅰🅱🅲 Negative Squared (검은 사각형)', 'style-smallCaps': 'Sᴍᴀʟʟ Cᴀᴘs (작은 대문자)', 'style-upsideDown': 'uʍoᗡ ǝpᴉsd∩ (뒤집기)', 'style-fullwidth': 'Ｆｕｌｌｗｉｄｔｈ (전각문자)', 'style-strikethrough': 'S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ (취소선)', 'style-underline': 'U̲n̲d̲e̲r̲l̲i̲n̲e̲ (밑줄)', 'style-superscript': 'ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ (위첨자)', 'style-parenthesized': '⒫⒜⒭⒠⒩⒯⒣⒠⒮⒤⒵⒠⒟ (괄호)', 'style-sansSerif': '𝖲𝖺𝗇𝗌-𝖲𝖾𝗋𝗂𝖿 (산세리프)', 'style-sansSerifItalic': '𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤 (산세리프 기울임)', 'style-serifBold': '𝐒𝐞𝐫𝐢𝐟 𝐁𝐨𝐥𝐝 (세리프 굵게)', 'style-serifItalic': '𝑆𝑒𝑟𝑖𝑓 𝐼𝑡𝑎𝑙𝑖𝑐 (세리프 기울임)', 'style-serifBoldItalic': '𝑺𝒆𝒓𝒊𝒇 𝑩𝒐𝒍𝒅 𝑰𝒕𝒂𝒍𝒊𝒄 (세리프 굵은 기울임)', 'style-subscript': 'ₛᵤᵦₛ꜀ᵣᵢₚₜ (아래첨자)', 'style-dotted': 'ḋȯṫṫėḋ (점 위)', 'style-wavy': 'w̴a̴v̴y̴ (물결)', 'style-doubleUnderline': 'D̳o̳u̳b̳l̳e̳ ̳U̳n̳d̳e̳r̳l̳i̳n̳e̳ (이중 밑줄)', 'style-crossed': 'C̷r̷o̷s̷s̷e̷d̷ (빗금)', 'style-zalgoMild': 'Z̤a̤l̤g̤o̤ ̤M̤i̤l̤d̤ (살짝 글리치)', 'style-zalgoMedium': 'Z̨̛a̢͝l̵̃g̸̈o̶̓ ̵͠M̷̛e̷̔d̵̑i̸͝u̶̇m̶͛ (글리치)', 'style-zalgoInsane': 'Z̸̢̛̲̠͙͖̥̼͖̫̼̈́̑̄̓̐̓̏͊̑̐a̵̢̡̯͖̣̙̼͙̎̄̈́̔͑̉̀̎͝l̶̨̺͔̩̣͈͙̱̲̭̾̄͐͋͆̋͠g̴̛̮̠̾͗̔̊̄̌̐͝o̷̢̰̼̗͙̺̫̭̰͆̓̀̀̇ (심한 글리치)', 'style-regional': '🇭🇪🇱🇱🇴 Regional (깃발)', 'style-currency': '₵u₹₹€₦₵¥ (화폐)', 'style-spaced': 'S P A C E D (띄어쓰기)', 'style-greek': 'GЯΣΣK SƬYLΣ (그리스)', 'style-bubble': 'ⓑⓤⓑⓑⓛⓔ (버블)', 'style-inverted': 'IᴎVƎЯTƎᗡ (반전)', 'style-mirrored': 'MIЯЯOЯƎᗡ (거울)'
+            },
+            zh: {
+                'logo': '花式文本生成器', 'subtitle': '将您的文本转换为100多种时尚的Unicode字体。非常适合Instagram、Discord、TikTok和游戏！', 'badge-styles': '100+ 种样式', 'badge-free': '永久免费', 'badge-no-signup': '无需注册', 'badge-instant-copy': '即时复制', 'input-label': '输入您的文本', 'char-count': '个字符', 'input-placeholder': '在此处输入以生成花式文本...', 'btn-clear': '清除', 'btn-copy-all': '复制所有样式', 'btn-view-styles': '查看样式', 'decorators-title': '文本装饰', 'search-placeholder': '搜索样式...', 'cat-all': '全部', 'cat-popular': '热门', 'cat-bold': '粗体和斜体', 'cat-fancy': '花式手写体', 'cat-symbols': '符号和形状', 'cat-effects': '效果', 'cat-gaming': '游戏', 'how-to-use-title': '如何使用花式文本生成器', 'step1-title': '输入您的文本', 'step1-desc': '在上面的输入框中输入任何文本。您的文本将被立即转换。', 'step2-title': '选择您的样式', 'step2-desc': '浏览100多种花式字体样式。使用过滤器找到最完美的一个。', 'step3-title': '复制和粘贴', 'step3-desc': '单击复制按钮或文本本身。粘贴到您想要的任何地方！', 'where-to-use-title': '在哪里使用', 'where-to-use-desc': '我们的花式文本生成器几乎可以在任何支持Unicode的平台上使用。复制您的时尚文本并直接粘贴！', 'platform-instagram': 'Instagram', 'platform-instagram-desc': '个人简介、标题、评论', 'platform-discord': 'Discord', 'platform-discord-desc': '用户名、消息、服务器', 'platform-gaming': '游戏', 'platform-gaming-desc': 'PUBG, Free Fire, MLBB 名称', 'platform-tiktok': 'TikTok', 'platform-tiktok-desc': '个人资料、视频标题', 'platform-twitter': 'Twitter/X', 'platform-twitter-desc': '推文、个人简介、显示名称', 'platform-whatsapp': 'WhatsApp', 'platform-whatsapp-desc': '状态、消息、群组', 'faq-title': '常见问题', 'faq1-q': '什么是花式文本生成器？', 'faq1-a': '花式文本生成器是一种在线工具，可将普通文本转换为时尚的Unicode字符。这些不是实际的字体，而是看起来像不同字体样式的特殊符号。这允许将文本复制并粘贴到任何支持Unicode的平台，包括社交媒体、游戏和消息应用程序。', 'faq2-q': '它免费使用吗？', 'faq2-a': '是的！我们的花式文本生成器完全免费使用。无需注册，无隐藏费用，无限制。随心所欲生成尽可能多的花式文本！', 'faq3-q': '花式文本可以在Instagram/Discord/PUBG上使用吗？', 'faq3-a': '是的！这里生成的花式文本使用大多数平台（包括Instagram、Discord、TikTok、Twitter、Facebook、PUBG、Free Fire等）都支持的Unicode字符。某些平台可能有字符限制，因此某些样式可能无法在所有地方使用。', 'faq4-q': '为什么有些字符没有转换？', 'faq4-a': 'Unicode花式字体主要支持拉丁字母（A-Z，a-z）和数字。特殊字符、标点符号以及来自其他语言（如韩语、中文等）的字符通常保持不变，因为在大多数花式样式中没有它们的Unicode等效项。', 'faq5-q': '中文也会转换吗？', 'faq5-a': 'Unicode花式字体主要支持英文字母（A-Z，a-z）和数字。汉字在大多数样式中将保持原样。但是，像删除线、下划线和Zalgo这样的效果样式可以应用于汉字！', 'footer-title': '花式文本生成器 - 免费Unicode字体转换器', 'footer-how-to-use': '如何使用', 'footer-faq': '常见问题', 'footer-love': '为全球创作者精心打造', 'toast-copied': '已复制到剪贴板！', 'toast-copied-decorator': '装饰已复制！', 'toast-copied-all': '所有样式已复制！', 'toast-enter-text': '请先输入一些文本！', 'empty-preview': '在上方输入文本...', 'style-bold': '𝗕𝗼𝗹𝗱 (粗体)', 'style-italic': '𝘐𝘵𝘢𝘭𝘪𝘤 (斜体)', 'style-boldItalic': '𝘽𝙤𝙡𝙙 𝙄𝙩𝙖𝙡𝙞𝙘 (粗斜体)', 'style-script': '𝒮𝒸𝓇𝒾𝓅𝓉 (手写体)', 'style-boldScript': '𝓑𝓸𝓵𝓭 𝓢𝓬𝓻𝓲𝓹𝓽 (粗手写体)', 'style-fraktur': '𝔉𝔯𝔞𝔨𝔱𝔲𝔯 (哥特体)', 'style-boldFraktur': '𝕭𝖔𝖑𝖉 𝕱𝖗𝖆𝖐𝖙𝖚𝖗 (粗哥特体)', 'style-doubleStruck': '𝔻𝕠𝕦𝕓𝕝𝕖-𝕊𝕥𝕣𝕦𝕔𝕜 (双线体)', 'style-monospace': '𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎 (等宽体)', 'style-circled': 'Ⓒⓘⓡⓒⓛⓔⓓ (圆形)', 'style-negativeCircled': '🅐🅑🅒 Negative Circled (黑底圆形)', 'style-squared': '🄰🄱🄲 Squared (方形)', 'style-negativeSquared': '🅰🅱🅲 Negative Squared (黑底方形)', 'style-smallCaps': 'Sᴍᴀʟʟ Cᴀᴘs (小型大写字母)', 'style-upsideDown': 'uʍoᗡ ǝpᴉsd∩ (颠倒)', 'style-fullwidth': 'Ｆｕｌｌｗｉｄｔｈ (全角)', 'style-strikethrough': 'S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ (删除线)', 'style-underline': 'U̲n̲d̲e̲r̲l̲i̲n̲e̲ (下划线)', 'style-superscript': 'ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ (上标)', 'style-parenthesized': '⒫⒜⒭⒠⒩⒯⒣⒠⒮⒤⒵⒠⒟ (括号)', 'style-sansSerif': '𝖲𝖺𝗇𝗌-𝖲𝖾𝗋𝗂𝖿 (无衬线体)', 'style-sansSerifItalic': '𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤 (无衬线斜体)', 'style-serifBold': '𝐒𝐞𝐫𝐢𝐟 𝐁𝐨𝐥𝐝 (衬线粗体)', 'style-serifItalic': '𝑆𝑒𝑟𝑖𝑓 𝐼𝑡𝑎𝑙𝑖𝑐 (衬线斜体)', 'style-serifBoldItalic': '𝑺𝒆𝒓𝒊𝒇 𝑩𝒐𝒍𝒅 𝑰𝒕𝒂𝒍𝒊𝒄 (衬线粗斜体)', 'style-subscript': 'ₛᵤᵦₛ꜀ᵣᵢₚₜ (下标)', 'style-dotted': 'ḋȯṫṫėḋ (顶注点)', 'style-wavy': 'w̴a̴v̴y̴ (波浪线)', 'style-doubleUnderline': 'D̳o̳u̳b̳l̳e̳ ̳U̳n̳d̳e̳r̳l̳i̳n̳e̳ (双下划线)', 'style-crossed': 'C̷r̷o̷s̷s̷e̷d̷ (斜线)', 'style-zalgoMild': 'Z̤a̤l̤g̤o̤ ̤M̤i̤l̤d̤ (轻度干扰)', 'style-zalgoMedium': 'Z̨̛a̢͝l̵̃g̸̈o̶̓ ̵͠M̷̛e̷̔d̵̑i̸͝u̶̇m̶͛ (干扰)', 'style-zalgoInsane': 'Z̸̢̛̲̠͙͖̥̼͖̫̼̈́̑̄̓̐̓̏͊̑̐a̵̢̡̯͖̣̙̼͙̎̄̈́̔͑̉̀̎͝l̶̨̺͔̩̣͈͙̱̲̭̾̄͐͋͆̋͠g̴̛̮̠̾͗̔̊̄̌̐͝o̷̢̰̼̗͙̺̫̭̰͆̓̀̀̇ (疯狂干扰)', 'style-regional': '🇭🇪🇱🇱🇴 Regional (旗帜)', 'style-currency': '₵u₹₹€₦₵¥ (货币)', 'style-spaced': 'S P A C E D (空格)', 'style-greek': 'GЯΣΣK SƬYLΣ (希腊风格)', 'style-bubble': 'ⓑⓤⓑⓑⓛⓔ (气泡)', 'style-inverted': 'IᴎVƎЯTƎᗡ (反转)', 'style-mirrored': 'MIЯЯOЯƎᗡ (镜像)'
+            },
+            es: {
+                'logo': 'Generador de Texto Elegante', 'subtitle': 'Transforma tu texto en más de 100 fuentes Unicode con estilo. ¡Perfecto para Instagram, Discord, TikTok y juegos!', 'badge-styles': 'Más de 100 estilos', 'badge-free': 'Gratis para siempre', 'badge-no-signup': 'Sin registro', 'badge-instant-copy': 'Copia instantánea', 'input-label': 'Introduce tu texto', 'char-count': 'caracteres', 'input-placeholder': 'Escribe aquí para generar texto elegante...', 'btn-clear': 'Limpiar', 'btn-copy-all': 'Copiar todos los estilos', 'btn-view-styles': 'Ver estilos', 'decorators-title': 'Decoradores de Texto', 'search-placeholder': 'Buscar estilos...', 'cat-all': 'Todos', 'cat-popular': 'Populares', 'cat-bold': 'Negrita e Itálica', 'cat-fancy': 'Fuentes Elegantes', 'cat-symbols': 'Símbolos y Formas', 'cat-effects': 'Efectos', 'cat-gaming': 'Juegos', 'how-to-use-title': 'Cómo Usar el Generador de Texto Elegante', 'step1-title': 'Escribe tu Texto', 'step1-desc': 'Introduce cualquier texto en el cuadro de entrada de arriba. Tu texto se convertirá instantáneamente.', 'step2-title': 'Elige tu Estilo', 'step2-desc': 'Explora más de 100 estilos de fuentes elegantes. Usa los filtros para encontrar el perfecto.', 'step3-title': 'Copia y Pega', 'step3-desc': 'Haz clic en el botón de copiar o en el propio texto. ¡Pega donde quieras!', 'where-to-use-title': 'Dónde Usarlo', 'where-to-use-desc': 'Nuestro generador de texto elegante funciona en casi cualquier plataforma que admita Unicode. ¡Copia tu texto con estilo y pégalo directamente!', 'platform-instagram': 'Instagram', 'platform-instagram-desc': 'Biografía, leyendas, comentarios', 'platform-discord': 'Discord', 'platform-discord-desc': 'Nombres de usuario, mensajes, servidores', 'platform-gaming': 'Juegos', 'platform-gaming-desc': 'Nombres para PUBG, Free Fire, MLBB', 'platform-tiktok': 'TikTok', 'platform-tiktok-desc': 'Perfil, leyendas de video', 'platform-twitter': 'Twitter/X', 'platform-twitter-desc': 'Tweets, biografía, nombre de perfil', 'platform-whatsapp': 'WhatsApp', 'platform-whatsapp-desc': 'Estado, mensajes, grupos', 'faq-title': 'Preguntas Frecuentes', 'faq1-q': '¿Qué es un Generador de Texto Elegante?', 'faq1-a': 'Un Generador de Texto Elegante es una herramienta en línea que convierte texto normal en elegantes caracteres Unicode. No son fuentes reales, sino símbolos especiales que parecen diferentes estilos de fuente. Esto permite que el texto se copie y pegue en cualquier plataforma que admita Unicode, incluidas las redes sociales, los juegos y las aplicaciones de mensajería.', 'faq2-q': '¿Es de uso gratuito?', 'faq2-a': '¡Sí! Nuestro Generador de Texto Elegante es de uso completamente gratuito. Sin necesidad de registrarse, sin cargos ocultos, sin límites. ¡Genera tanto texto elegante como quieras!', 'faq3-q': '¿Funcionará el texto elegante en Instagram/Discord/PUBG?', 'faq3-a': '¡Sí! El texto elegante generado aquí utiliza caracteres Unicode que son compatibles con la mayoría de las plataformas, incluidas Instagram, Discord, TikTok, Twitter, Facebook, PUBG, Free Fire y muchas más. Algunas plataformas pueden tener restricciones de caracteres, por lo que es posible que ciertos estilos no funcionen en todas partes.', 'faq4-q': '¿Por qué no se convierten algunos caracteres?', 'faq4-a': 'Las fuentes elegantes Unicode admiten principalmente el alfabeto latino (A-Z, a-z) y los números. Los caracteres especiales, la puntuación y los caracteres de otros idiomas (coreano, chino, etc.) generalmente permanecen sin cambios, ya que no existen equivalentes Unicode para ellos en la mayoría de los estilos elegantes.', 'faq5-q': '¿Se convierte también el español?', 'faq5-a': 'Las fuentes elegantes Unicode admiten principalmente el alfabeto latino (A-Z, a-z). Las letras especiales en español como "ñ" o las vocales con tilde (á, é, í, ó, ú) generalmente no se convertirán en la mayoría de los estilos. Sin embargo, los estilos de efectos como el tachado o el subrayado sí se pueden aplicar.', 'footer-title': 'Generador de Texto Elegante - Convertidor de Fuentes Unicode Gratis', 'footer-how-to-use': 'Cómo Usar', 'footer-faq': 'PF', 'footer-love': 'Hecho con cuidado para creadores de todo el mundo', 'toast-copied': '¡Copiado al portapapeles!', 'toast-copied-decorator': '¡Decorador copiado!', 'toast-copied-all': '¡Todos los estilos copiados!', 'toast-enter-text': '¡Por favor, introduce algo de texto primero!', 'empty-preview': 'Escribe texto arriba...', 'style-bold': '𝗕𝗼𝗹𝗱 (Negrita)', 'style-italic': '𝘐𝘵𝘢𝘭𝘪𝘤 (Cursiva)', 'style-boldItalic': '𝘽𝙤𝙡𝙙 𝙄𝙩𝙖𝙡𝙞𝙘 (Negrita Cursiva)', 'style-script': '𝒮𝒸𝓇𝒾𝓅𝓉 (Manuscrita)', 'style-boldScript': '𝓑𝓸𝓵𝓭 𝓢𝓬𝓻𝓲𝓹𝓽 (Manuscrita Negrita)', 'style-fraktur': '𝔉𝔯𝔞𝔨𝔱𝔲𝔯 (Gótica)', 'style-boldFraktur': '𝕭𝖔𝖑𝖉 𝕱𝖗𝖆𝖐𝖙𝖚𝖗 (Gótica Negrita)', 'style-doubleStruck': '𝔻𝕠𝕦𝕓𝕝𝕖-𝕊𝕥𝕣𝕦𝕔𝕜 (Doble Trazo)', 'style-monospace': '𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎 (Monoespaciada)', 'style-circled': 'Ⓒⓘⓡⓒⓛⓔⓓ (En Círculos)', 'style-negativeCircled': '🅐🅑🅒 Círculo Negativo', 'style-squared': '🄰🄱🄲 Cuadrado', 'style-negativeSquared': '🅰🅱🅲 Cuadrado Negativo', 'style-smallCaps': 'Sᴍᴀʟʟ Cᴀᴘs (Versalitas)', 'style-upsideDown': 'uʍoᗡ ǝpᴉsd∩ (Al Revés)', 'style-fullwidth': 'Ｆｕｌｌｗｉｄｔｈ (Ancho Completo)', 'style-strikethrough': 'S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ (Tachado)', 'style-underline': 'U̲n̲d̲e̲r̲l̲i̲n̲e̲ (Subrayado)', 'style-superscript': 'ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ (Superíndice)', 'style-parenthesized': '⒫⒜⒭⒠⒩⒯⒣⒠⒮⒤⒵⒠⒟ (Entre Paréntesis)', 'style-sansSerif': '𝖲𝖺𝗇𝗌-𝖲𝖾𝗋𝗂𝖿 (Palo Seco)', 'style-sansSerifItalic': '𝘚𝘢𝘯𝘴-𝘚𝘦𝘳𝘪𝘧 𝘐𝘵𝘢𝘭𝘪𝘤 (Palo Seco Cursiva)', 'style-serifBold': '𝐒𝐞𝐫𝐢𝐟 𝐁𝐨𝐥𝐝 (Serifa Negrita)', 'style-serifItalic': '𝑆𝑒𝑟𝑖𝑓 𝐼𝑡𝑎𝑙𝑖𝑐 (Serifa Cursiva)', 'style-serifBoldItalic': '𝑺𝒆𝒓𝒊𝒇 𝑩𝒐𝒍𝒅 𝑰𝒕𝒂𝒍𝒊𝒄 (Serifa Negrita Cursiva)', 'style-subscript': 'ₛᵤᵦₛ꜀ᵣᵢₚₜ (Subíndice)', 'style-dotted': 'ḋȯṫṫėḋ (Punteado Superior)', 'style-wavy': 'w̴a̴v̴y̴ (Ondulado)', 'style-doubleUnderline': 'D̳o̳u̳b̳l̳e̳ ̳U̳n̳d̳e̳r̳l̳i̳n̳e̳ (Doble Subrayado)', 'style-crossed': 'C̷r̷o̷s̷s̷e̷d̷ (Cruzado)', 'style-zalgoMild': 'Z̤a̤l̤g̤o̤ ̤M̤i̤l̤d̤ (Zalgo Suave)', 'style-zalgoMedium': 'Z̨̛a̢͝l̵̃g̸̈o̶̓ ̵͠M̷̛e̷̔d̵̑i̸͝u̶̇m̶͛ (Zalgo)', 'style-zalgoInsane': 'Z̸̢̛̲̠͙͖̥̼͖̫̼̈́̑̄̓̐̓̏͊̑̐a̵̢̡̯͖̣̙̼͙̎̄̈́̔͑̉̀̎͝l̶̨̺͔̩̣͈͙̱̲̭̾̄͐͋͆̋͠g̴̛̮̠̾͗̔̊̄̌̐͝o̷̢̰̼̗͙̺̫̭̰͆̓̀̀̇ (Zalgo Extremo)', 'style-regional': '🇭🇪🇱🇱🇴 Regional (Bandera)', 'style-currency': '₵u₹₹€₦₵¥ (Moneda)', 'style-spaced': 'S P A C E D (Espaciado)', 'style-greek': 'GЯΣΣK SƬYLΣ (Estilo Griego)', 'style-bubble': 'ⓑⓤⓑⓑⓛⓔ (Burbuja)', 'style-inverted': 'IᴎVƎЯTƎᗡ (Invertido)', 'style-mirrored': 'MIЯЯOЯƎᗡ (Espejo)'
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
+            const translation = translations[lang];
+            if (!translation) return;
+
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                if (translation[key]) {
+                    elem.innerHTML = translation[key];
+                }
+            });
+
+            document.querySelectorAll('[data-key-placeholder]').forEach(elem => {
+                const key = elem.getAttribute('data-key-placeholder');
+                if (translation[key]) {
+                    elem.placeholder = translation[key];
+                }
+            });
+            
+            document.querySelectorAll('[data-key-style]').forEach(elem => {
+                const key = elem.getAttribute('data-key-style');
+                const translationKey = `style-${key}`;
+                if (translation[translationKey]) {
+                    elem.innerHTML = translation[translationKey];
+                }
+            });
+
+            updateAllPreviews(document.getElementById('inputText').value);
+        }
+        
+        // DOM ready
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
