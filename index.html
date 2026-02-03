@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Text Generator - 멋진 텍스트 생성기</title>
+    <meta name="description" content="일반 텍스트를 멋진 유니코드 스타일로 변환하세요. Bold, Italic, Cursive, Gothic, Bubble 등 다양한 스타일 지원!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --bg-input: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #475569;
+            --success: #22c55e;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .input-section {
+            background: var(--bg-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .input-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: var(--text);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 0.75rem;
+            background: var(--bg-input);
+            color: var(--text);
+            font-size: 1.1rem;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .styles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+
+        .style-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .style-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .style-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .style-name {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .copy-btn.copied {
+            background: var(--success);
+        }
+
+        .copy-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .style-preview {
+            background: var(--bg-input);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            word-break: break-word;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        .style-preview.empty {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--success);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .styles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        /* 스크롤바 스타일 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ Fancy Text Generator</h1>
+            <p class="subtitle">일반 텍스트를 멋진 유니코드 스타일로 변환하세요!</p>
+        </header>
+
+        <section class="input-section">
+            <label class="input-label" for="inputText">텍스트를 입력하세요</label>
+            <textarea
+                id="inputText"
+                placeholder="여기에 텍스트를 입력하면 아래에서 다양한 스타일로 변환됩니다..."
+            >Hello World</textarea>
+        </section>
+
+        <section class="styles-grid" id="stylesGrid">
+            <!-- 스타일 카드들이 JavaScript로 생성됩니다 -->
+        </section>
+
+        <footer>
+            <p>Made with ❤️ | <a href="https://github.com" target="_blank">GitHub</a>에서 소스 코드 보기</p>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast">복사되었습니다!</div>
+
+    <script>
+        // 유니코드 문자 매핑 정의
+        const charMaps = {
+            bold: {
+                name: '𝗕𝗼𝗹𝗱 (굵게)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D5D4 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D5EE + i);
+                    return acc;
+                }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D7EC + i);
+                    return acc;
+                }, {})
+            },
+            italic: {
+                name: '𝘐𝘵𝘢𝘭𝘪𝘤 (기울임)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D608 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D622 + i);
+                    return acc;
+                }, {})
+            },
+            boldItalic: {
+                name: '𝘽𝙤𝙡𝙙 𝙄𝙩𝙖𝙡𝙞𝙘 (굵은 기울임)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D63C + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D656 + i);
+                    return acc;
+                }, {})
+            },
+            script: {
+                name: '𝒮𝒸𝓇𝒾𝓅𝓉 (필기체)',
+                upper: Object.fromEntries('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((c, i) => {
+                    const special = { B: 'ℬ', E: 'ℰ', F: 'ℱ', H: 'ℋ', I: 'ℐ', L: 'ℒ', M: 'ℳ', R: 'ℛ' };
+                    return [c, special[c] || String.fromCodePoint(0x1D49C + i)];
+                })),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    const special = { e: 'ℯ', g: 'ℊ', o: 'ℴ' };
+                    acc[c] = special[c] || String.fromCodePoint(0x1D4B6 + i);
+                    return acc;
+                }, {})
+            },
+            boldScript: {
+                name: '𝓑𝓸𝓵𝓭 𝓢𝓬𝓻𝓲𝓹𝓽 (굵은 필기체)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D4D0 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D4EA + i);
+                    return acc;
+                }, {})
+            },
+            fraktur: {
+                name: '𝔉𝔯𝔞𝔨𝔱𝔲𝔯 (고딕체)',
+                upper: Object.fromEntries('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((c, i) => {
+                    const special = { C: 'ℭ', H: 'ℌ', I: 'ℑ', R: 'ℜ', Z: 'ℨ' };
+                    return [c, special[c] || String.fromCodePoint(0x1D504 + i)];
+                })),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D51E + i);
+                    return acc;
+                }, {})
+            },
+            boldFraktur: {
+                name: '𝕭𝖔𝖑𝖉 𝕱𝖗𝖆𝖐𝖙𝖚𝖗 (굵은 고딕체)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D56C + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D586 + i);
+                    return acc;
+                }, {})
+            },
+            doubleStruck: {
+                name: '𝔻𝕠𝕦𝕓𝕝𝕖-𝕊𝕥𝕣𝕦𝕔𝕜 (외곽선)',
+                upper: Object.fromEntries('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').map((c, i) => {
+                    const special = { C: 'ℂ', H: 'ℍ', N: 'ℕ', P: 'ℙ', Q: 'ℚ', R: 'ℝ', Z: 'ℤ' };
+                    return [c, special[c] || String.fromCodePoint(0x1D538 + i)];
+                })),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D552 + i);
+                    return acc;
+                }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D7D8 + i);
+                    return acc;
+                }, {})
+            },
+            monospace: {
+                name: '𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎 (고정폭)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D670 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D68A + i);
+                    return acc;
+                }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1D7F6 + i);
+                    return acc;
+                }, {})
+            },
+            circled: {
+                name: 'Ⓒⓘⓡⓒⓛⓔⓓ (원형)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x24B6 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x24D0 + i);
+                    return acc;
+                }, {}),
+                numbers: { '0': '⓪', ...'123456789'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x2460 + i);
+                    return acc;
+                }, {}) }
+            },
+            negativeCircled: {
+                name: '🅐🅑🅒 Negative Circled (검은 원형)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1F150 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1F150 + i);
+                    return acc;
+                }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x24FF - 10 + i + 1);
+                    return acc;
+                }, {})
+            },
+            squared: {
+                name: '🄰🄱🄲 Squared (사각형)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1F130 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1F130 + i);
+                    return acc;
+                }, {})
+            },
+            negativeSquared: {
+                name: '🅰🅱🅲 Negative Squared (검은 사각형)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1F170 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1F170 + i);
+                    return acc;
+                }, {})
+            },
+            smallCaps: {
+                name: 'Sᴍᴀʟʟ Cᴀᴘs (작은 대문자)',
+                upper: {},
+                lower: {
+                    a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ғ', g: 'ɢ', h: 'ʜ',
+                    i: 'ɪ', j: 'ᴊ', k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ', o: 'ᴏ', p: 'ᴘ',
+                    q: 'ǫ', r: 'ʀ', s: 's', t: 'ᴛ', u: 'ᴜ', v: 'ᴠ', w: 'ᴡ', x: 'x',
+                    y: 'ʏ', z: 'ᴢ'
+                }
+            },
+            upsideDown: {
+                name: 'uʍoᗡ ǝpᴉsd∩ (뒤집기)',
+                upper: {
+                    A: '∀', B: 'ꓭ', C: 'Ↄ', D: 'ᗡ', E: 'Ǝ', F: 'Ⅎ', G: '⅁', H: 'H',
+                    I: 'I', J: 'ſ', K: 'ꓘ', L: '˥', M: 'W', N: 'N', O: 'O', P: 'Ԁ',
+                    Q: 'Ꝺ', R: 'ꓤ', S: 'S', T: '⊥', U: '∩', V: 'Λ', W: 'M', X: 'X',
+                    Y: '⅄', Z: 'Z'
+                },
+                lower: {
+                    a: 'ɐ', b: 'q', c: 'ɔ', d: 'p', e: 'ǝ', f: 'ɟ', g: 'ƃ', h: 'ɥ',
+                    i: 'ᴉ', j: 'ɾ', k: 'ʞ', l: 'l', m: 'ɯ', n: 'u', o: 'o', p: 'd',
+                    q: 'b', r: 'ɹ', s: 's', t: 'ʇ', u: 'n', v: 'ʌ', w: 'ʍ', x: 'x',
+                    y: 'ʎ', z: 'z'
+                },
+                reverse: true
+            },
+            fullwidth: {
+                name: 'Ｆｕｌｌｗｉｄｔｈ (전각문자)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0xFF21 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0xFF41 + i);
+                    return acc;
+                }, {}),
+                numbers: '0123456789'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0xFF10 + i);
+                    return acc;
+                }, {}),
+                space: '　'
+            },
+            strikethrough: {
+                name: 'S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ (취소선)',
+                combiner: '\u0336'
+            },
+            underline: {
+                name: 'U̲n̲d̲e̲r̲l̲i̲n̲e̲ (밑줄)',
+                combiner: '\u0332'
+            },
+            superscript: {
+                name: 'ˢᵘᵖᵉʳˢᶜʳⁱᵖᵗ (위첨자)',
+                upper: {
+                    A: 'ᴬ', B: 'ᴮ', C: 'ᶜ', D: 'ᴰ', E: 'ᴱ', F: 'ᶠ', G: 'ᴳ', H: 'ᴴ',
+                    I: 'ᴵ', J: 'ᴶ', K: 'ᴷ', L: 'ᴸ', M: 'ᴹ', N: 'ᴺ', O: 'ᴼ', P: 'ᴾ',
+                    Q: 'Q', R: 'ᴿ', S: 'ˢ', T: 'ᵀ', U: 'ᵁ', V: 'ⱽ', W: 'ᵂ', X: 'ˣ',
+                    Y: 'ʸ', Z: 'ᶻ'
+                },
+                lower: {
+                    a: 'ᵃ', b: 'ᵇ', c: 'ᶜ', d: 'ᵈ', e: 'ᵉ', f: 'ᶠ', g: 'ᵍ', h: 'ʰ',
+                    i: 'ⁱ', j: 'ʲ', k: 'ᵏ', l: 'ˡ', m: 'ᵐ', n: 'ⁿ', o: 'ᵒ', p: 'ᵖ',
+                    q: 'q', r: 'ʳ', s: 'ˢ', t: 'ᵗ', u: 'ᵘ', v: 'ᵛ', w: 'ʷ', x: 'ˣ',
+                    y: 'ʸ', z: 'ᶻ'
+                },
+                numbers: {
+                    '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+                    '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'
+                }
+            },
+            parenthesized: {
+                name: '⒫⒜⒭⒠⒩⒯⒣⒠⒮⒤⒵⒠⒟ (괄호)',
+                upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x1F110 + i);
+                    return acc;
+                }, {}),
+                lower: 'abcdefghijklmnopqrstuvwxyz'.split('').reduce((acc, c, i) => {
+                    acc[c] = String.fromCodePoint(0x249C + i);
+                    return acc;
+                }, {})
+            }
+        };
+
+        // 텍스트 변환 함수
+        function convertText(text, style) {
+            const map = charMaps[style];
+            if (!map) return text;
+
+            // 결합 문자 스타일 (취소선, 밑줄)
+            if (map.combiner) {
+                return text.split('').map(c => c + map.combiner).join('');
+            }
+
+            let result = text.split('').map(char => {
+                if (map.upper && map.upper[char]) return map.upper[char];
+                if (map.lower && map.lower[char]) return map.lower[char];
+                if (map.numbers && map.numbers[char]) return map.numbers[char];
+                if (char === ' ' && map.space) return map.space;
+                return char;
+            }).join('');
+
+            // 뒤집기 스타일인 경우 문자열 반전
+            if (map.reverse) {
+                result = result.split('').reverse().join('');
+            }
+
+            return result;
+        }
+
+        // 클립보드에 복사
+        async function copyToClipboard(text, button) {
+            try {
+                await navigator.clipboard.writeText(text);
+
+                // 버튼 상태 변경
+                const originalHTML = button.innerHTML;
+                button.classList.add('copied');
+                button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg> 복사됨`;
+
+                // 토스트 표시
+                showToast();
+
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = originalHTML;
+                }, 2000);
+            } catch (err) {
+                console.error('복사 실패:', err);
+            }
+        }
+
+        // 토스트 표시
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // 스타일 카드 생성
+        function createStyleCard(styleName, styleConfig) {
+            const card = document.createElement('div');
+            card.className = 'style-card';
+            card.dataset.style = styleName;
+
+            card.innerHTML = `
+                <div class="style-header">
+                    <span class="style-name">${styleConfig.name}</span>
+                    <button class="copy-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        복사
+                    </button>
+                </div>
+                <div class="style-preview empty">텍스트를 입력하세요...</div>
+            `;
+
+            const copyBtn = card.querySelector('.copy-btn');
+            copyBtn.addEventListener('click', () => {
+                const preview = card.querySelector('.style-preview');
+                if (!preview.classList.contains('empty')) {
+                    copyToClipboard(preview.textContent, copyBtn);
+                }
+            });
+
+            return card;
+        }
+
+        // 모든 프리뷰 업데이트
+        function updateAllPreviews(text) {
+            const cards = document.querySelectorAll('.style-card');
+            cards.forEach(card => {
+                const style = card.dataset.style;
+                const preview = card.querySelector('.style-preview');
+
+                if (text.trim() === '') {
+                    preview.textContent = '텍스트를 입력하세요...';
+                    preview.classList.add('empty');
+                } else {
+                    preview.textContent = convertText(text, style);
+                    preview.classList.remove('empty');
+                }
+            });
+        }
+
+        // 초기화
+        function init() {
+            const grid = document.getElementById('stylesGrid');
+            const input = document.getElementById('inputText');
+
+            // 스타일 카드 생성
+            Object.entries(charMaps).forEach(([name, config]) => {
+                const card = createStyleCard(name, config);
+                grid.appendChild(card);
+            });
+
+            // 입력 이벤트 리스너
+            input.addEventListener('input', (e) => {
+                updateAllPreviews(e.target.value);
+            });
+
+            // 초기 프리뷰 업데이트
+            updateAllPreviews(input.value);
+        }
+
+        // DOM 로드 후 초기화
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
