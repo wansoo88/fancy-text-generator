@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Fancy Text Generator | Guides, Tips & Tutorials</title>
+    <meta name="description" content="Learn everything about fancy text, Unicode fonts, special characters, and how to make your social media profiles stand out. Tips, guides, and tutorials.">
+    <meta name="keywords" content="fancy text blog, unicode guide, font tutorials, social media tips, gaming names guide">
+    <link rel="canonical" href="https://fancy-text-generator-vf.netlify.app/blog/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Blog - Fancy Text Generator">
+    <meta property="og:description" content="Guides, tips, and tutorials about fancy text, Unicode fonts, and special characters.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7270937562888797" crossorigin="anonymous"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.05);
+            margin-bottom: 40px;
+            border-radius: 20px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        header p {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .blog-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .blog-card-image {
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .blog-card-content {
+            padding: 25px;
+        }
+        
+        .blog-card-category {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.3);
+            color: #667eea;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+        
+        .blog-card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        
+        .blog-card p {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        
+        .blog-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .blog-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        .category-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Fancy Text Generator</a>
+        
+        <header>
+            <h1>📚 Fancy Text Blog</h1>
+            <p>Guides, tutorials, and tips for making your text stand out</p>
+        </header>
+        
+        <div class="categories">
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Guides</button>
+            <button class="category-btn">Social Media</button>
+            <button class="category-btn">Gaming</button>
+            <button class="category-btn">Symbols</button>
+        </div>
+        
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-card-image">🔤</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Guide</span>
+                    <h2>What is Unicode? Complete Guide to Unicode Fonts</h2>
+                    <p>Learn everything about Unicode, how it works, and why it enables fancy text across all platforms and devices.</p>
+                    <a href="what-is-unicode.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">📸</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Social Media</span>
+                    <h2>50+ Instagram Bio Ideas for 2024</h2>
+                    <p>Creative and stylish Instagram bio ideas with fancy fonts to make your profile stand out from the crowd.</p>
+                    <a href="instagram-bio-ideas.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #5865F2 0%, #7289da 100%);">💬</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Gaming</span>
+                    <h2>Discord Username Generator Guide</h2>
+                    <p>Create unique and stylish Discord usernames with special characters and fancy fonts.</p>
+                    <a href="discord-username-guide.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);">🎮</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Gaming</span>
+                    <h2>PUBG Stylish Names Collection 2024</h2>
+                    <p>500+ stylish PUBG names with symbols and fancy fonts. Ready to copy and paste for your gaming profile.</p>
+                    <a href="pubg-stylish-names.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #000000 0%, #434343 100%);">🎵</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Social Media</span>
+                    <h2>TikTok Profile Tips & Tricks</h2>
+                    <p>Make your TikTok profile aesthetic with fancy fonts, cool symbols, and creative bio ideas.</p>
+                    <a href="tiktok-profile-tips.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">✨</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Symbols</span>
+                    <h2>Cool Symbols Copy Paste Guide</h2>
+                    <p>Complete collection of cool symbols, special characters, and text symbols ready to copy and paste.</p>
+                    <a href="cool-symbols-guide.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #ee9ca7 0%, #ffdde1 100%);">🌸</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Guide</span>
+                    <h2>Aesthetic Fonts Explained</h2>
+                    <p>Discover different aesthetic font styles and learn how to use them for your social media profiles.</p>
+                    <a href="aesthetic-fonts.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);">🏆</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Gaming</span>
+                    <h2>Gaming Name Ideas for All Games</h2>
+                    <p>Creative gaming name ideas for PUBG, Free Fire, Fortnite, COD, and more. Stand out in any game!</p>
+                    <a href="gaming-name-ideas.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);">◕‿◕</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Symbols</span>
+                    <h2>Kaomoji & Emoticons Guide</h2>
+                    <p>Complete guide to Japanese emoticons (kaomoji). Express emotions with cute text faces!</p>
+                    <a href="kaomoji-guide.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #1DA1F2 0%, #0d8bd9 100%);">🐦</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Social Media</span>
+                    <h2>Twitter/X Fonts & Formatting</h2>
+                    <p>Learn how to use fancy fonts and formatting on Twitter/X to make your tweets stand out.</p>
+                    <a href="twitter-fonts.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #8360c3 0%, #2ebf91 100%);">📋</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Guide</span>
+                    <h2>How to Copy Paste Fonts</h2>
+                    <p>Step-by-step guide on how to copy and paste fancy fonts on any device and platform.</p>
+                    <a href="copy-paste-fonts.html">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-card-image" style="background: linear-gradient(135deg, #654ea3 0%, #eaafc8 100%);">📱</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Social Media</span>
+                    <h2>Text Symbols for Social Media</h2>
+                    <p>Best text symbols and special characters for Instagram, TikTok, Twitter, and other platforms.</p>
+                    <a href="text-symbols-social-media.html">Read More →</a>
+                </div>
+            </article>
+        </div>
+        
+        <footer>
+            <p>© 2024 Fancy Text Generator. All rights reserved.</p>
+            <p style="margin-top: 15px;">
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms.html">Terms of Service</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
