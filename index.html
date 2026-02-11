@@ -225,6 +225,45 @@
             background: var(--primary-dark);
         }
 
+        /* Toolbar Buttons */
+        .toolbar-btn {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            color: var(--text);
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .toolbar-btn:hover {
+            background: var(--gradient);
+            border-color: transparent;
+            color: white;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        .toolbar-btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .toolbar-btn:hover svg {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .toolbar-btn:active {
+            transform: translateY(0) scale(1);
+        }
+
         /* Category Tabs */
         .category-section {
             margin-bottom: 1.5rem;
@@ -769,9 +808,301 @@
         }
         .cookie-accept:hover { background: var(--primary-dark); }
         .cookie-learn { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Favorite Button */
+        .fav-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .fav-btn:hover {
+            transform: scale(1.2);
+            color: #ef4444;
+        }
+
+        .fav-btn.favorited {
+            color: #ef4444;
+            animation: heartbeat 0.5s ease;
+        }
+
+        .fav-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(1.1); }
+            75% { transform: scale(1.25); }
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 90%;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            color: #ef4444;
+        }
+
+        /* Particle Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced Animations */
+        .badge {
+            animation: fadeInDown 0.5s ease;
+        }
+
+        .badge:nth-child(1) { animation-delay: 0.1s; }
+        .badge:nth-child(2) { animation-delay: 0.2s; }
+        .badge:nth-child(3) { animation-delay: 0.3s; }
+        .badge:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            animation: scaleIn 0.6s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Shortcuts Display */
+        .shortcut-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bg-input);
+            border-radius: 0.5rem;
+        }
+
+        .shortcut-key {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.4rem;
+            font-family: monospace;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Download Preview */
+        .download-preview {
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .download-text {
+            font-size: 3rem;
+            color: #000;
+            font-weight: 700;
+            margin: 2rem 0;
+        }
     </style>
 </head>
 <body>
+    <!-- Particle Background -->
+    <div id="particles"></div>
+
+    <!-- Favorites Modal -->
+    <div id="favoritesModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">⭐ Favorite Styles</h2>
+                <button class="modal-close" onclick="closeFavorites()">&times;</button>
+            </div>
+            <div id="favoritesContent"></div>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div id="historyModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">🕐 Recent Texts</h2>
+                <button class="modal-close" onclick="closeHistory()">&times;</button>
+            </div>
+            <div id="historyContent"></div>
+        </div>
+    </div>
+
+    <!-- Shortcuts Modal -->
+    <div id="shortcutsModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">⌨️ Keyboard Shortcuts</h2>
+                <button class="modal-close" onclick="closeShortcuts()">&times;</button>
+            </div>
+            <div class="shortcut-list">
+                <div class="shortcut-item">
+                    <span>Clear text</span>
+                    <span class="shortcut-key">Ctrl + K</span>
+                </div>
+                <div class="shortcut-item">
+                    <span>Copy all styles</span>
+                    <span class="shortcut-key">Ctrl + Shift + C</span>
+                </div>
+                <div class="shortcut-item">
+                    <span>Toggle theme</span>
+                    <span class="shortcut-key">Ctrl + T</span>
+                </div>
+                <div class="shortcut-item">
+                    <span>Show favorites</span>
+                    <span class="shortcut-key">Ctrl + F</span>
+                </div>
+                <div class="shortcut-item">
+                    <span>Show history</span>
+                    <span class="shortcut-key">Ctrl + H</span>
+                </div>
+                <div class="shortcut-item">
+                    <span>Focus search</span>
+                    <span class="shortcut-key">/</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <header>
             <h1 class="logo" data-key="logo">Fancy Text Generator</h1>
@@ -788,6 +1119,32 @@
                 <button onclick="setLanguage('zh')" class="action-btn">中文</button>
                 <button onclick="setLanguage('es')" class="action-btn">Español</button>
                 <button onclick="setLanguage('ja')" class="action-btn">日本語</button>
+            </div>
+            <div class="toolbar" style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;">
+                <button id="themeToggle" class="toolbar-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+                    <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <span>Theme</span>
+                </button>
+                <button class="toolbar-btn" onclick="showFavorites()" title="View Favorite Styles">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    <span id="favCount">Favorites (<span id="favCountNum">0</span>)</span>
+                </button>
+                <button class="toolbar-btn" onclick="showHistory()" title="View Recent Texts">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>History</span>
+                </button>
+                <button class="toolbar-btn" onclick="showShortcuts()" title="Keyboard Shortcuts">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                    <span>Shortcuts</span>
+                </button>
             </div>
         </header>
 
@@ -1420,6 +1777,11 @@
             }
 
             card.innerHTML = `
+                <button class="fav-btn ${isFavorited(styleName) ? 'favorited' : ''}" title="Add to favorites">
+                    <svg fill="${isFavorited(styleName) ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
                 <div class="style-header">
                     <div>
                         <span class="style-name" data-key-style="${styleName}">${styleConfig.name}</span>
@@ -1434,8 +1796,22 @@
                 <div class="style-preview empty" data-key-empty="empty-preview">Type text above...</div>
             `;
 
+            const favBtn = card.querySelector('.fav-btn');
             const copyBtn = card.querySelector('.copy-btn');
             const preview = card.querySelector('.style-preview');
+
+            favBtn.addEventListener('click', () => {
+                toggleFavorite(styleName);
+                favBtn.classList.toggle('favorited');
+                const svg = favBtn.querySelector('svg');
+                if (favBtn.classList.contains('favorited')) {
+                    svg.setAttribute('fill', 'currentColor');
+                    showToast('⭐ Added to favorites!');
+                } else {
+                    svg.setAttribute('fill', 'none');
+                    showToast('Removed from favorites');
+                }
+            });
 
             copyBtn.addEventListener('click', () => {
                 if (!preview.classList.contains('empty')) {
@@ -1744,8 +2120,220 @@
             updateAllPreviews(document.getElementById('inputText').value);
         }
         
+        // ==================== NEW FEATURES ====================
+
+        // Theme Toggle
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Update icon
+            const icon = document.getElementById('themeIcon');
+            if (newTheme === 'light') {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+            } else {
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />';
+            }
+
+            showToast(newTheme === 'light' ? '☀️ Light mode activated' : '🌙 Dark mode activated');
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.body.setAttribute('data-theme', 'light');
+                const icon = document.getElementById('themeIcon');
+                icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />';
+            }
+        }
+
+        // Favorites Management
+        let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+        function toggleFavorite(styleName) {
+            const index = favorites.indexOf(styleName);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(styleName);
+            }
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavCount();
+            updateAllPreviews(document.getElementById('inputText').value);
+        }
+
+        function isFavorited(styleName) {
+            return favorites.includes(styleName);
+        }
+
+        function updateFavCount() {
+            document.getElementById('favCountNum').textContent = favorites.length;
+        }
+
+        function showFavorites() {
+            const modal = document.getElementById('favoritesModal');
+            const content = document.getElementById('favoritesContent');
+
+            if (favorites.length === 0) {
+                content.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 2rem;">No favorites yet. Click the heart icon on any style to save it!</p>';
+            } else {
+                content.innerHTML = favorites.map(styleName => {
+                    const text = document.getElementById('inputText').value || 'Your Text';
+                    const converted = convertText(text, styleName);
+                    return `
+                        <div class="style-card" style="margin-bottom: 1rem;">
+                            <div class="style-header">
+                                <span class="style-name">${styleName}</span>
+                                <button class="fav-btn favorited" onclick="toggleFavorite('${styleName}'); showFavorites();">
+                                    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
+                                </button>
+                            </div>
+                            <div class="style-preview">${converted}</div>
+                            <button class="copy-btn" onclick="copyTextDirect('${converted.replace(/'/g, "\\'")}'); showToast('Copied!')">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                Copy
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeFavorites() {
+            document.getElementById('favoritesModal').classList.remove('active');
+        }
+
+        // History Management
+        let textHistory = JSON.parse(localStorage.getItem('textHistory') || '[]');
+
+        function addToHistory(text) {
+            if (!text || text.length === 0) return;
+            textHistory = textHistory.filter(t => t !== text);
+            textHistory.unshift(text);
+            textHistory = textHistory.slice(0, 10); // Keep last 10
+            localStorage.setItem('textHistory', JSON.stringify(textHistory));
+        }
+
+        function showHistory() {
+            const modal = document.getElementById('historyModal');
+            const content = document.getElementById('historyContent');
+
+            if (textHistory.length === 0) {
+                content.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 2rem;">No history yet. Start typing to save your text history!</p>';
+            } else {
+                content.innerHTML = textHistory.map((text, index) => `
+                    <div style="background: var(--bg-input); padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.5rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background='var(--bg-input)'" onclick="document.getElementById('inputText').value='${text.replace(/'/g, "\\'")}'; closeHistory(); updateAllPreviews('${text.replace(/'/g, "\\'")}');">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>${text}</span>
+                            <button class="action-btn" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;" onclick="event.stopPropagation(); copyTextDirect('${text.replace(/'/g, "\\'")}'); showToast('Copied!')">Copy</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closeHistory() {
+            document.getElementById('historyModal').classList.remove('active');
+        }
+
+        function copyTextDirect(text) {
+            navigator.clipboard.writeText(text);
+        }
+
+        // Shortcuts Modal
+        function showShortcuts() {
+            document.getElementById('shortcutsModal').classList.add('active');
+        }
+
+        function closeShortcuts() {
+            document.getElementById('shortcutsModal').classList.remove('active');
+        }
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Ctrl + K: Clear text
+            if (e.ctrlKey && e.key === 'k') {
+                e.preventDefault();
+                clearText();
+            }
+            // Ctrl + Shift + C: Copy all styles
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+                copyAllStyles();
+            }
+            // Ctrl + T: Toggle theme
+            if (e.ctrlKey && e.key === 't') {
+                e.preventDefault();
+                toggleTheme();
+            }
+            // Ctrl + F: Show favorites
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                showFavorites();
+            }
+            // Ctrl + H: Show history
+            if (e.ctrlKey && e.key === 'h') {
+                e.preventDefault();
+                showHistory();
+            }
+            // /: Focus search
+            if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+            // Escape: Close modals
+            if (e.key === 'Escape') {
+                closeFavorites();
+                closeHistory();
+                closeShortcuts();
+            }
+        });
+
+        // Particle Animation
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Track text changes for history
+        let typingTimer;
+        document.getElementById('inputText').addEventListener('input', function(e) {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                if (e.target.value) {
+                    addToHistory(e.target.value);
+                }
+            }, 2000); // Save after 2 seconds of no typing
+        });
+
+        // Initialize new features
+        function initNewFeatures() {
+            loadTheme();
+            createParticles();
+            updateFavCount();
+        }
+
         // DOM ready
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            initNewFeatures();
+        });
     </script>
 </body>
 </html>
